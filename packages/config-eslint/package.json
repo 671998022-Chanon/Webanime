@@ -1,0 +1,26 @@
+{
+  "name": "@nexus/config-eslint",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node -e \"process.exit(0)\"",
+    "lint": "node -e \"process.exit(0)\"",
+    "typecheck": "node -e \"process.exit(0)\"",
+    "test": "node -e \"process.exit(0)\"",
+    "clean": "node -e \"process.exit(0)\""
+  },
+  "exports": {
+    ".": "./base.js",
+    "./base": "./base.js",
+    "./next": "./next.js",
+    "./react-library": "./react-library.js"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.26.0"
+  }
+}

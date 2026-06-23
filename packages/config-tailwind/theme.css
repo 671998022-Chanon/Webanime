@@ -1,0 +1,38 @@
+/**
+ * Nexus Anime design tokens for Tailwind CSS v4.
+ * Imported by apps/web via globals.css.
+ */
+@theme {
+  /* Colors */
+  --color-void-base: #0c0e12;
+  --color-void-elevated: #141820;
+  --color-resonance: #00e5cc;
+  --color-resonance-muted: color-mix(in srgb, #00e5cc 60%, transparent);
+  --color-rift-gold: #f5a623;
+  --color-text-primary: #f0f2f5;
+  --color-text-secondary: color-mix(in srgb, #f0f2f5 70%, transparent);
+  --color-text-muted: color-mix(in srgb, #f0f2f5 45%, transparent);
+  --color-border-subtle: color-mix(in srgb, #f0f2f5 10%, transparent);
+  --color-destructive: #ef4444;
+
+  /* Typography */
+  --font-display: var(--font-exo2), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Layout */
+  --height-nav: 4rem;
+  --max-width-container: 90rem;
+
+  /* Aspect ratios */
+  --aspect-poster: 2 / 3;
+  --aspect-hero: 21 / 9;
+
+  /* Motion */
+  --duration-ui: 400ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-glow-resonance: 0 0 20px color-mix(in srgb, #00e5cc 30%, transparent);
+  --shadow-glow-gold: 0 0 16px color-mix(in srgb, #f5a623 25%, transparent);
+}
