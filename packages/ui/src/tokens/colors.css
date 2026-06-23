@@ -1,0 +1,18 @@
+:root {
+  --color-void-base: #0c0e12;
+  --color-void-elevated: #141820;
+  --color-resonance: #00e5cc;
+  --color-rift-gold: #f5a623;
+  --color-text-primary: #f0f2f5;
+  --color-destructive: #ef4444;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
