@@ -141,6 +141,7 @@ M1 configured **Local** and **Preview**. M2 adds **Staging** and **Production** 
 | `STRIPE_SECRET_KEY` | S5 | `server-only` | No | — | Stripe secret API key (starts with `sk_live_` or `sk_test_`). Used for subscription creation, customer management, and payment intent operations. |
 | `STRIPE_WEBHOOK_SECRET` | S5 | `server-only` | No | — | Stripe webhook endpoint secret. Used to verify webhook signatures on `POST /api/v1/webhooks/stripe`. |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | S5 | `public` | No | — | Stripe publishable key (starts with `pk_live_` or `pk_test_`). Exposed to the browser for Stripe Elements / Stripe.js. |
+| `STRIPE_NEXUS_PRICE_ID` | S5 | `server-only` | No | — | Stripe Price ID for the Nexus Prime monthly subscription (e.g., `price_1AbCdEf`). Created in Stripe test mode at $7.99/mo USD. |
 
 **Usage:**
 - `NEXT_PUBLIC_APP_URL` — Referenced in `next.config.ts`, layout metadata, and API envelope `meta` fields.
@@ -192,6 +193,7 @@ This matrix shows the **minimum required variables** per tier. Optional variable
 | `STRIPE_SECRET_KEY` | — | — | — | — |
 | `STRIPE_WEBHOOK_SECRET` | — | — | — | — |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | — | — | — | — |
+| `STRIPE_NEXUS_PRICE_ID` | — | — | — | — |
 | `SENTRY_DSN` | — | — | — | — |
 | `NEXT_PUBLIC_SENTRY_DSN` | — | — | — | — |
 | `SENTRY_ENVIRONMENT` | — | — | — | — |
@@ -278,6 +280,7 @@ const envSchema = z.object({
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
+  STRIPE_NEXUS_PRICE_ID: z.string().optional(),
 
   // ── S9 (Monitoring) ────────────────────────────────────
   SENTRY_DSN: z.string().url().optional(),
@@ -431,6 +434,7 @@ EMAIL_FROM=noreply@nexusanime.com
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_NEXUS_PRICE_ID=
 
 # ── Cloudflare [S6] ───────────────────────────────────────────────
 CLOUDFLARE_ACCOUNT_ID=
