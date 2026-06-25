@@ -1,6 +1,28 @@
 # M3.5 — RBAC & Permission Strategy
 
-> Defines the platform's role-based access control model: role hierarchy, permission matrix, guard surface, route-projection rules, audit policy, and the future ABAC migration path.
+> **Scope:** This document defines the **RBAC & Permission Strategy for Nexus Anime** — role hierarchy, permission matrix, guard surface, route-projection rules, audit logging, and the future ABAC migration path. It is the authoritative design reference for all authorization concerns.
+
+> **Status:** Draft — Pending Review
+> **Date:** 2026-06-25
+> **Author:** Tech Lead
+> **Milestone:** M3 (Sprints 4–5)
+
+---
+
+## Table of Contents
+
+1. [Scope & Scope Decisions](#1-scope--scope-decisions)
+2. [Roles](#2-roles)
+3. [Permission Matrix](#3-permission-matrix)
+4. [Role Hierarchy & Permission Resolution](#4-role-hierarchy--permission-resolution)
+5. [Access Control Rules (Guard Surface)](#5-access-control-rules-guard-surface)
+6. [Route → Permission Mapping](#6-route--permission-mapping)
+7. [Admin UI Surface](#7-admin-ui-surface)
+8. [Audit Logging](#8-audit-logging)
+9. [Future ABAC Migration Path](#9-future-abac-migration-path)
+10. [Changelog](#10-changelog)
+
+---
 
 ## 1. Scope & Scope Decisions
 
@@ -37,14 +59,23 @@
 
 ### 2.1 Hierarchy
 
-```
-superadmin
-  └── admin
-        └── user
-              └── guest (anonymous, no session)
+```mermaid
+graph TD
+    SA["🛡️ superadmin<br/>Platform owner · role assignment · system config"]
+    AD["⚙️ admin<br/>Content operator · CMS · analytics · user management"]
+    MOD["🛡️ moderator<br/>Community steward · comment/review moderation"]
+    PREM["💎 premium<br/>Resonance tier · higher session limits"]
+    USER["👤 user<br/>Authenticated subscriber · own profile & library"]
+    GUEST["👻 guest<br/>Unauthenticated · public catalog only"]
+
+    SA --> AD
+    AD --> MOD
+    MOD --> PREM
+    PREM --> USER
+    USER --> GUEST
 ```
 
-Higher roles inherit all capabilities of roles below them. Inheritance is **implicit via the guard layer**, not stored in a table.
+Higher roles inherit all capabilities of roles below them. Inheritance is **implicit via the guard layer**, not stored in a table. Arrows denote "inherits from" (downward).
 
 ### 2.2 Role definitions
 
@@ -198,8 +229,12 @@ export function requirePermission(slug: string) {
 
 Guards compose left-to-right. Order matters — fail fast on cheapest checks first:
 
-```
-requireAuth → requireSubscriber → requirePermission → requireOwner
+```mermaid
+flowchart LR
+    A["requireAuth<br/>401 if no session"] --> B["requireSubscriber<br/>403 if no active sub"]
+    B --> C["requirePermission<br/>403 if role lacks slug"]
+    C --> D["requireOwner<br/>403 if not resource owner"]
+    D --> E["🚀 Handler"]
 ```
 
 Example — delete a comment (moderator+ only):
