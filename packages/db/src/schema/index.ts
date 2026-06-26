@@ -1,3 +1,8 @@
-// Schema modules are added incrementally across M2 commits.
-// Commit 6: enums, genres, studios, shelves
-export {};
+export * from "./enums";
+export * from "./users";
+export * from "./anime";
+export * from "./taxonomy";
+export * from "./engagement";
+export * from "./social";
+export * from "./system";
+export * from "./curation";
