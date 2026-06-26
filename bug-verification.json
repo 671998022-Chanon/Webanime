@@ -1,0 +1,29 @@
+{
+  "generated": "2026-06-26",
+  "scope": "full monorepo (apps/web, packages/db, packages/cache, packages/ui, config, CI)",
+  "method": "multi-lens scan (8 parallel agents) + manual source-level verification of all critical/high findings",
+  "summary": {
+    "total_raw_findings": 140,
+    "verified_critical": 4,
+    "verified_high": 45,
+    "medium": 66,
+    "low": 25,
+    "categories": {
+      "correctness": 42,
+      "security": 20,
+      "config": 16,
+      "performance": 21,
+      "runtime": 21,
+      "architecture": 10,
+      "type-safety": 7,
+      "dead-code": 3
+    }
+  },
+  "topRecommendations": [
+    "Fix broken ./studios import in packages/db/src/schema/anime.ts (build-breaking)",
+    "Add auth guards to admin/ and (app)/ routes (critical security)",
+    "Remove empty-string defaults for Stripe secrets in env.ts",
+    "Add error handling to all Redis operations in packages/cache",
+    "Fix turbo.json invalid globalEnv key"
+  ]
+}
