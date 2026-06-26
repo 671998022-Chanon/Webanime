@@ -2,8 +2,8 @@
 
 Premium anime streaming platform with console-grade UI polish — a dark, cinematic portal built for gaming crossover and anime fans.
 
-**Status:** Milestone 1 complete (Project Foundation)  
-**Roadmap:** [`docs/master-roadmap.md`](docs/master-roadmap.md)  
+**Status:** Milestone 2 complete (Catalog foundation — DB, cache, API envelope, error boundaries)
+**Roadmap:** [`docs/master-roadmap.md`](docs/master-roadmap.md)
 **M1 Spec:** [`docs/milestone-1-project-foundation.md`](docs/milestone-1-project-foundation.md)
 
 ## Stack
@@ -14,7 +14,8 @@ Premium anime streaming platform with console-grade UI polish — a dark, cinema
 | Language | TypeScript (strict) |
 | Monorepo | pnpm workspaces · Turborepo |
 | UI | Tailwind CSS 4 · `@nexus/ui` design system |
-| Database (S2+) | PostgreSQL · Drizzle ORM · Neon |
+| Database (S2+) | PostgreSQL · Drizzle ORM · Neon (`@nexus/db`) |
+| Cache (S2+) | Upstash Redis (`@nexus/cache`) |
 | Auth (S4+) | Auth.js v5 |
 | Payments (S5+) | Stripe |
 | Video (S6+) | Cloudflare Stream |
@@ -23,11 +24,14 @@ Premium anime streaming platform with console-grade UI polish — a dark, cinema
 ## Repository structure
 
 ```
-apps/web          Next.js application (deployable)
-packages/ui       Design system primitives
-packages/config-* Shared ESLint, TypeScript, Tailwind configs
-tooling/docker    Local Postgres, Redis, Mailpit
-docs/             Roadmap, sprint plans, ADRs
+apps/web            Next.js application (deployable)
+packages/ui         Design system primitives
+packages/db         Drizzle schema, client, dialects (@nexus/db)
+packages/cache      Redis cache, rate limiting, feature flags (@nexus/cache)
+packages/config-*   Shared ESLint, TypeScript, Tailwind configs
+tooling/docker      Local Postgres, Redis, Mailpit
+tooling/scripts     Seed scripts (admin, anime, catalog)
+docs/               Roadmap, sprint plans, ADRs, milestone specs
 ```
 
 ## Prerequisites
@@ -58,14 +62,18 @@ Open [http://localhost:3000](http://localhost:3000). Design system showcase: [ht
 
 | Command | Description |
 |---------|-------------|
-| `pnpm dev` | Start Next.js dev server |
+| `pnpm dev` | Start dev server (Turborepo) |
 | `pnpm build` | Production build (all packages) |
 | `pnpm lint` | ESLint across workspace |
 | `pnpm typecheck` | TypeScript check |
 | `pnpm test` | Vitest unit tests |
 | `pnpm format` | Prettier format |
+| `pnpm format:check` | Prettier check |
+| `pnpm clean` | Clean build artifacts |
 | `pnpm docker:up` | Start Docker services |
 | `pnpm docker:down` | Stop Docker services |
+| `pnpm docker:reset` | Reset Docker services (wipe volumes) |
+| `pnpm docker:logs` | Tail Docker service logs |
 
 ## Architecture
 
@@ -75,7 +83,8 @@ Layered modular monolith — see [ADR-001](docs/architecture/adr/001-modular-mon
 Edge (Cloudflare + Vercel)
   → Next.js App Router (Server Components + client islands)
     → Route handlers / Server Actions
-      → Services → Repositories → Drizzle (S2+)
+      → Services → Repositories → @nexus/db (Drizzle + Neon)
+                                  @nexus/cache (Upstash Redis)
 ```
 
 API responses use a standard envelope: `{ data }` / `{ error: { message, code, details } }`.
@@ -86,8 +95,9 @@ API responses use a standard envelope: `{ data }` / `{ error: { message, code, d
 |----|-----------|--------|
 | M0 | Repository scaffold | ✅ |
 | M1 | Design system in code | ✅ |
-| M2 | Catalog browsable | Sprint 3 |
-| M3 | Auth complete | Sprint 4 |
+| M2 | Catalog foundation (DB, cache, API envelope, error boundaries) | ✅ |
+| M3 | Auth complete | In progress |
+| M4 | User profiles, watchlist, continue-watching | Planned |
 
 ## License
 

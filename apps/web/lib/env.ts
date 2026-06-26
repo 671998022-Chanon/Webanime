@@ -26,6 +26,8 @@ const envSchema = z.object({
   REDIS_URL: z.string().url().default("redis://localhost:6379"),
   UPSTASH_REDIS_REST_URL: z.string().url().optional(),
   UPSTASH_REDIS_REST_TOKEN: z.string().min(1).optional(),
+  ENABLE_REDIS_CACHE: z.enum(["true", "false"]).default("false"),
+  ENABLE_REDIS_SHELVES: z.enum(["true", "false"]).default("false"),
 
   // ── Email [S4] ─────────────────────────────────────────
   RESEND_API_KEY: z.string().optional(),
@@ -67,6 +69,8 @@ const parsed = envSchema.safeParse({
   REDIS_URL: process.env.REDIS_URL,
   UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
   UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
+  ENABLE_REDIS_CACHE: process.env.ENABLE_REDIS_CACHE,
+  ENABLE_REDIS_SHELVES: process.env.ENABLE_REDIS_SHELVES,
   RESEND_API_KEY: process.env.RESEND_API_KEY,
   EMAIL_FROM: process.env.EMAIL_FROM,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
