@@ -1,0 +1,36 @@
+name: Release
+
+# Creates a GitHub Release with auto-generated notes when a semver tag is pushed.
+# Tag pattern: v* (e.g. v0.3.0, v1.0.0). See Repository Design §8–§9.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Build to verify the tagged commit is shippable before releasing.
+      - run: pnpm build
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          fail_on_unmatched_files: false

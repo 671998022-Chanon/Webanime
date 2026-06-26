@@ -99,6 +99,10 @@ API responses use a standard envelope: `{ data }` / `{ error: { message, code, d
 | M3 | Auth complete | In progress |
 | M4 | User profiles, watchlist, continue-watching | Planned |
 
+## Repository conventions
+
+The repository's branch strategy, workflow, versioning, folder structure, and process rules are defined in [`docs/REPOSITORY-DESIGN.md`](docs/REPOSITORY-DESIGN.md). Read it before creating branches, PRs, or issues.
+
 ## License
 
 See [LICENSE](LICENSE).

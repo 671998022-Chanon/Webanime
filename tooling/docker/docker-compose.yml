@@ -1,0 +1,48 @@
+# Local backing services for Nexus Anime development.
+# Start with: pnpm docker:up
+# Stop with:  pnpm docker:down
+# Wipe data:  pnpm docker:reset
+#
+# These services mirror the stack used in production:
+#   - Postgres  -> @nexus/db (Drizzle + Neon)
+#   - Redis     -> @nexus/cache (Upstash Redis)
+#   - Mailpit   -> email capture during auth development
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: nexus-postgres
+    environment:
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: nexus
+      POSTGRES_DB: nexus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexus -d nexus"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: nexus-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: nexus-mailpit
+    ports:
+      - "1025:1025" # SMTP
+      - "8025:8025" # Web UI
+
+volumes:
+  pgdata:
