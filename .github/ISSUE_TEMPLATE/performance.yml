@@ -1,0 +1,86 @@
+name: Performance
+description: Report a slow page, memory leak, or inefficient rendering
+title: "[Perf]: "
+labels: ["performance", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Performance reports need numbers. Lighthouse scores, Web Vitals values,
+        or even a wall-clock measurement help us figure out where time is spent.
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Page route, API endpoint, or operation that's slow.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is slow, and how slow is it? (e.g. "Anime catalog takes 4s on 3G")
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What performance target should we meet?
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Current behavior
+      description: Measured numbers — Lighthouse LCP/TTFB/CLS, time-to-interactive, custom traces, DB query times.
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Network throttling preset, page path, accounts for cache state.
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Evidence
+      description: Lighthouse report, Chrome DevTools Performance trace screenshot, WebPageTest link.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Device, network, region, browser.
+      placeholder: |
+        - Device:
+        - Network: 4G / 3G / broadband
+        - Region:
+        - Browser:
+      value: |
+        - Device:
+        - Network:
+        - Region:
+        - Browser:
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Web Vitals (if known)
+      placeholder: |
+        - LCP:
+        - FID / INP:
+        - CLS:
+        - TTFB:
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I measured the issue with a real tool (Lighthouse, WebPageTest, DevTools).
+          required: true
+        - label: I have included a screenshot or link to the report.
+          required: true
+        - label: I cached nothing specific to my machine that others won't share (e.g. VPN).
+          required: false

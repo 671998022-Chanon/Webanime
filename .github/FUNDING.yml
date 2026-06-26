@@ -1,0 +1,13 @@
+# FUNDING.yml — open source funding configuration for Nexus Anime.
+#
+# GitHub Sponsors links appear on the repo's "Sponsor" button.
+# Replace `OWNER` with your GitHub user or organization when enabling
+# sponsorship. Remove the `github:` key if sponsorship isn't active yet.
+
+github: []
+
+# Other funding channels — uncomment and fill in when ready.
+# patreon: nexus-anime
+# open_collective: nexus-anime
+# ko_fi: nexusanime
+# custom: []

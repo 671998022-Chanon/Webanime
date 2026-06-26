@@ -1,0 +1,94 @@
+name: UI / UX
+description: Report a visual bug, accessibility issue, or design discrepancy
+title: "[UI/UX]: "
+labels: ["ui-ux", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        UI issues are easier to triage with a screenshot attached. If you're
+        reporting an accessibility problem, note the assistive technology
+        (screen reader, voice control, keyboard-only).
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Where does this happen? Page route, component, or screen name.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One-sentence description of the issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should it look or behave like? Ideally link a design reference or spec.
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Current behavior
+      description: What you're seeing instead.
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps, including viewport / theme (dark vs. light) if relevant.
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag images of the wrong state, and the expected state if available.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, OS, viewport size, theme setting, reduced-motion preference.
+      placeholder: |
+        - Browser:
+        - OS:
+        - Viewport: 380x800
+        - Theme: dark
+      value: |
+        - Browser:
+        - OS:
+        - Viewport:
+        - Theme:
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Cosmetic
+        - Minor (harmless but jarring)
+        - Major (blocks a user flow)
+        - Critical (data loss or broken page)
+
+  - type: checkboxes
+    id: a11y
+    attributes:
+      label: Accessibility
+      options:
+        - label: This issue affects accessibility (a11y).
+        - label: I tested with an assistive technology (specify in Environment).
+        - label: I checked WCAG 2.1 AA and this is a gap.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues.
+          required: true
+        - label: I attached a screenshot.
+          required: false

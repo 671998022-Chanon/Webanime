@@ -1,12 +1,27 @@
 name: Feature Request
-description: Suggest an idea for the project
+description: Suggest an idea or enhancement for Nexus Anime
+title: "[Feature]: "
 labels: ["feature", "needs-triage"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Great ideas start with a clear problem statement. Tell us what you're
+        trying to do today — that context helps us design the right solution.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One-sentence pitch for the feature.
+    validations:
+      required: true
+
   - type: textarea
     id: problem
     attributes:
       label: Problem
-      description: What problem are you trying to solve? Is it related to a pain point?
+      description: What problem are you trying to solve? Is it related to a friction point in the current product?
     validations:
       required: true
 
@@ -14,18 +29,28 @@ body:
     id: solution
     attributes:
       label: Proposed solution
-      description: What do you want to happen?
-    validations:
-      required: true
+      description: What do you want to happen? Be as specific as you can — mockups, API shapes, and user flows all help.
 
   - type: textarea
     id: alternatives
     attributes:
       label: Alternatives considered
-      description: What other approaches did you consider?
+      description: What other approaches did you look at, and why don't they fit?
 
   - type: textarea
     id: context
     attributes:
       label: Additional context
-      description: Any other context, mockups, or references.
+      description: Anything else — links to prior art, references, screenshots, user research.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate request.
+          required: true
+        - label: I have explained the problem, not just the solution.
+          required: true
+        - label: I am willing to help implement this (maintainers may ping you).
+          required: false

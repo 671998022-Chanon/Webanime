@@ -1,0 +1,81 @@
+# Dependabot configuration for Nexus Anime.
+#
+# See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
+#
+# Dependabot proposes version updates as pull requests against `main`.
+# We scope it to weekly updates with a low open-PR limit so the team can
+# review rather than being flooded. Reviewer assignment uses CODEOWNERS +
+# the explicit `reviewers:` key below so proposals land in the right inbox.
+
+version: 2
+
+updates:
+  # npm packages — covers the whole monorepo (pnpm workspaces).
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "nexus-anime/platform"
+    assignees:
+      - "nexus-anime/platform"
+    labels:
+      - "chore"
+      - "scope:ci"
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    # Major-version bumps in dev tools are fine; prod deps (frameworks, runtime)
+    # are held at minor patches to avoid surprise breaking changes. Group them.
+    groups:
+      # All "safe" dev/build tooling versions.
+      build-tooling:
+        patterns:
+          - "turbo"
+          - "prettier"
+          - "tsx"
+          - "typescript"
+          - "eslint*"
+          - "@types/*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Frameworks and runtime — major bumps get their own PRs.
+      frameworks:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "next-auth"
+          - "drizzle*"
+        update-types:
+          - "patch"
+    # Don't auto-bump packages that aren't in the package registry version.
+    ignore:
+      # LTS Node is pinned by .nvmrc; upgrades are manual.
+      - dependency-name: "node"
+        versions: [">22.x"]
+
+  # GitHub Actions — keep CI runner versions fresh.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:05"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "nexus-anime/platform"
+    labels:
+      - "chore"
+      - "scope:ci"
+    commit-message:
+      prefix: "chore(actions)"
+      include: scope
+    # Pin everything to a major tag so bumps are predictable. Dependabot tracks
+    # the manifest file itself, so this entry works without listing each action.
+    patterns:
+      - "*"

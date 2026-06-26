@@ -1,0 +1,25 @@
+# CodeQL configuration for Nexus Anime.
+#
+# Scans the applications and packages directories (and root source) but
+# ignores generated output, tests, and tooling that doesn't ship to users.
+# Adjust the `paths-ignore:` list if your repo layout changes.
+
+name: "Nexus Anime CodeQL config"
+
+paths:
+  - apps
+  - packages
+  - tooling/scripts
+  - src
+
+paths-ignore:
+  - '**/*.test.*'
+  - '**/*.spec.*'
+  - '**/__tests__/**'
+  - '**/node_modules/**'
+  - '**/dist/**'
+  - '**/.next/**'
+  - '**/build/**'
+  - '**/coverage/**'
+  - '**/fixtures/**'
+  - 'tmp/'

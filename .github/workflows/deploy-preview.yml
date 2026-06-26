@@ -1,0 +1,81 @@
+# Preview deployment workflow.
+#
+# Builds and deploys the web app to a preview environment on every PR and
+# push to main. The preview URL is posted back to the PR by the Vercel
+# GitHub App (or whatever deployment step you configure below).
+#
+# The deployment provider is intentionally left configurable — swap the
+# deploy step for your provider (Vercel, Cloudflare Pages, Netlify, AWS S3,
+# etc.) without changing the rest of the workflow. Two common approaches
+# are documented in comments below.
+#
+# IMPORTANT: this file is NOT enabled out of the box. Set
+# `enabled: false` (default) until your secrets and deployment provider
+# are wired up. Delete the file if you don't need preview deploy.
+
+name: Deploy (Preview)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  deployments: write  # For `gh` CLI deployment status updates.
+  pull-requests: write  # To post the preview URL as a PR comment.
+
+jobs:
+  deploy-preview:
+    name: deploy-preview
+    runs-on: ubuntu-latest
+    # Allow opt-out via a file or environment variable if needed.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    environment:
+      name: preview
+      url: ${{ steps.deploy.outputs.preview_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # --- Option A: Vercel GitHub App (recommended) ---
+      # The Vercel bot handles preview deployments automatically.
+      # If you use the app, this workflow becomes a no-op deploy step.
+      - name: Trigger Vercel preview deployment
+        if: false  # <-- remove this `if: false` once the Vercel app is connected
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-comment: true
+
+      # --- Option B: Custom build + upload ---
+      # Replace with your provider's deploy action once configured.
+      - name: Build for preview
+        run: pnpm build
+        env:
+          # Preview env vars (sanitized, non-production values).
+          NODE_ENV: preview
+
+      - name: Deploy (placeholder)
+        id: deploy
+        run: |
+          # Replace this with your provider's deploy command:
+          #   npx cloudflare pages deploy ...
+          #   netlify deploy --dir=apps/web/.next --prod=false ...
+          #   aws s3 sync ...
+          echo "preview_url=https://preview-${GITHUB_REF_NAME}--nexus-anime.example.com" >> "$GITHUB_OUTPUT"
+          echo "::notice::Configure your deploy step before relying on this workflow"

@@ -1,0 +1,63 @@
+# CodeQL static analysis for JavaScript / TypeScript.
+#
+# GitHub's CodeQL engine looks for security-relevant patterns — open
+# redirects, prototype pollution, command injection, missing input
+# sanitization — rather than just linting. We enable it on pushes to
+# main and on any PR, with a weekly cron as a safety net for supply-chain
+# vector detection.
+#
+# See https://docs.github.com/en/code-security/code-scanning
+
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"  # Every Monday at 06:00 UTC
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  security-events: write  # Required to upload SARIF results.
+
+jobs:
+  analyze:
+    name: CodeQL (${{ matrix.language } })
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript-typescript"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          config-file: ./.github/codeql/codeql-config.yml
+          queries: security-extended,security-and-quality
+
+      # For interpreted languages (JS/TS, Python) CodeQL analyzes sources
+      # directly — no build step required. For compiled languages uncomment
+      # the autobuild step.
+      # - name: Autobuild
+      #   uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"

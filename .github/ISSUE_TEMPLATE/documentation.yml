@@ -1,0 +1,40 @@
+name: Documentation
+description: Improve docs, README, ADRs, or guides
+title: "[Docs]: "
+labels: ["docs", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation improvements keep the project readable and onboarding fast.
+        Tell us where the current docs fall short.
+
+  - type: input
+    id: page
+    attributes:
+      label: Affected page or file
+      description: URL, file path, or section heading.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is wrong, missing, or unclear about this page?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should the page say instead? Paste a draft if you have one.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked the docs and the info I'm requesting really is missing.
+          required: true
+        - label: I am willing to submit a PR with the proposed change.
+          required: false

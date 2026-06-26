@@ -1,8 +1,21 @@
+# Issue template configuration for Nexus Anime.
+#
+# `blank_issues_enabled: false` forces reporters through a template, which
+# gives us the structured fields we need for triage (OS, reproduction steps,
+# severity). Blank issues hide the checklist that reminds reporters to search
+# first and include versions.
+
 blank_issues_enabled: false
+
 contact_links:
+  # Private channel for vulnerabilities — never file a public issue for a
+  # security bug. SECURITY.md explains the coordinated disclosure process.
   - name: Security vulnerability
     url: mailto:security@example.com
-    about: Please report security issues privately — do not open a public issue.
-  - name: Question / Discussion
+    about: Report security issues privately so we can issue a fix before disclosure.
+
+  # GitHub Discussions is the right home for questions and open-ended ideas
+  # that aren't actionable bug reports or feature requests.
+  - name: Question or discussion
     url: https://github.com/OWNER/nexus-anime/discussions
-    about: For questions and ideas, use GitHub Discussions.
+    about: Ask questions, share ideas, or show off your setup.

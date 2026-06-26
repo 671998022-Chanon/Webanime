@@ -1,24 +1,19 @@
 name: Bug Report
-description: Report something that isn't working
+description: Report something that isn't working as expected
+title: "[Bug]: "
 labels: ["bug", "needs-triage"]
 body:
-  - type: textarea
-    id: what-happened
+  - type: markdown
     attributes:
-      label: What happened?
-      description: Describe the bug clearly.
-    validations:
-      required: true
+      value: |
+        Thanks for taking the time to fill out a bug report. Please search
+        existing issues first — duplicates slow down triage.
 
   - type: textarea
-    id: repro
+    id: summary
     attributes:
-      label: Steps to reproduce
-      description: How can we see the same behavior?
-      placeholder: |
-        1. Go to '...'
-        2. Click on '...'
-        3. See error
+      label: Summary
+      description: One-sentence summary of the bug. Be specific — "Player fails to resume after seek on iOS" is better than "UI breaks."
     validations:
       required: true
 
@@ -26,18 +21,91 @@ body:
     id: expected
     attributes:
       label: Expected behavior
-      description: What did you expect to happen instead?
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Current behavior
+      description: What actually happened? Include the exact error message if there is one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Minimal steps to trigger the bug. Numbered lists are best.
+        ```
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+        ```
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or screen recording
+      description: Drag images or paste a Loom/YouTube link. Visual evidence speeds up diagnosis.
 
   - type: input
-    id: env
+    id: version
+    attributes:
+      label: App version or commit SHA
+      description: The release tag, branch, or commit SHA where you saw this.
+
+  - type: textarea
+    id: environment
     attributes:
       label: Environment
-      description: Browser, OS, app version or commit SHA.
-      placeholder: Chrome 125, macOS 14, commit abc123
+      description: Browser, OS, device, and anything else relevant (e.g. ad blocker enabled, VPN).
+      placeholder: |
+        - Browser: Chrome 125
+        - OS: macOS 14.5
+        - Device: iPhone 15 Pro
+      value: |
+        - Browser:
+        - OS:
+        - Device:
 
   - type: textarea
     id: logs
     attributes:
-      label: Relevant logs or screenshots
-      description: Paste any error output or attach screenshots.
+      label: Relevant logs
+      description: Paste any console errors, network request failures, or runtime logs.
       render: shell
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How badly does this affect you?
+      options:
+        - Cosmetic (visual only, no impact on usage)
+        - Minor (workaround exists)
+        - Major (blocks a feature, no workaround)
+        - Critical (blocks the entire app or loses data)
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      description: Confirm you've done the basics so we can focus on the bug.
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
+        - label: I have included a minimal reproduction or clear steps.
+          required: true
+        - label: I have described my environment.
+          required: false
+        - label: I am on the latest release (or `main`) and the bug still reproduces.
+          required: false
