@@ -33,3 +33,12 @@
   --nexus-icon-xl: 32px;
   --nexus-icon-2xl: 48px;
 }
+
+/* Font family utilities — kept here so Tailwind v4 picks them up as arbitrary classes */
+.font-body {
+  font-family: var(--nexus-font-body);
+}
+
+.font-display {
+  font-family: var(--nexus-font-display);
+}

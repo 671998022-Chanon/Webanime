@@ -17,6 +17,11 @@ export {
 
 // Components
 export { Button, buttonVariants } from "./components/button";
+export { IconButton, iconButtonVariants } from "./components/icon-button";
+export { LinkButton, linkButtonVariants } from "./components/link-button";
+export { Typography } from "./components/typography";
+export { Separator } from "./components/separator";
+export { Container } from "./components/container";
 export { Input, Textarea, InputIcon } from "./components/input";
 export { Card } from "./components/card";
 export { Badge } from "./components/badge";
