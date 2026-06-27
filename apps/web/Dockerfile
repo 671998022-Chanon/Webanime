@@ -7,8 +7,9 @@ WORKDIR /app
 # pnpm is the declared package manager; enable it via corepack (bundled with Node 22)
 RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
-# Copy only the files needed to install dependencies (Docker layer cache)
-COPY package.json pnpm-workspace.yaml .npmrc ./
+# Copy only the files needed to install dependencies (Docker layer cache).
+# pnpm-lock.yaml is required for `install --frozen-lockfile` (used in CI/prod).
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY apps/web/package.json ./apps/web/package.json
 COPY packages/db/package.json ./packages/db/package.json
 COPY packages/cache/package.json ./packages/cache/package.json
@@ -48,8 +49,10 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Non-root user for runtime
-RUN useradd --create-home --uid 1000 node
+# Non-root user for runtime. The node:22-bookworm-slim base already ships a
+# `node` user (uid 1000); create it only if absent so the build is idempotent
+# across base-image variants.
+RUN id -u node >/dev/null 2>&1 || useradd --create-home --uid 1000 node
 
 # Install tini for proper PID 1 init (handles signals correctly)
 RUN apt-get update && apt-get install -y --no-install-recommends tini curl \

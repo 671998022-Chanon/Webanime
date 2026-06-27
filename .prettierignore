@@ -26,6 +26,10 @@ coverage/
 docker-compose*.yml
 Dockerfile*
 
+# AI assistant tooling — not project source; don't reformat.
+.claude/
+.superpowers/
+
 # OS / editor
 .DS_Store
 *.log

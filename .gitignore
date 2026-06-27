@@ -128,6 +128,9 @@ dist
 # pnpm
 .pnpm-store
 
+# npm lockfile — stray artifact; this project uses pnpm, never npm.
+package-lock.json
+
 # yarn v3
 .pnp.*
 .yarn/*

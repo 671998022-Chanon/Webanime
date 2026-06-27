@@ -8,9 +8,9 @@ Each milestone below is a **release boundary** — it ships a coherent, tested i
 
 ## Current state
 
-- **v0.2.x** is the active release line (pre-release).
-- Milestones M0 (Repository scaffold), M1 (Design system), and M2 (Catalog foundation — DB, cache, API envelope, error boundaries) are complete on `main`.
-- M3 (Auth) is in progress.
+- **Foundation (`v0.1.0-foundation`)** is the latest tagged release (2026-06-27). It finalizes M0 (Repository scaffold) and M1 (Design system) with a validated, green CI pipeline: install, lint, typecheck, build, format:check, and `docker compose build` all pass on `main`.
+- M2 (Catalog foundation — DB, cache, API envelope, error boundaries) is complete on `main`.
+- Development of M3 (Auth) continues on short-lived branches but is not part of this release.
 
 ---
 

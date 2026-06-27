@@ -2,9 +2,9 @@
 
 Premium anime streaming platform with console-grade UI polish — a dark, cinematic portal built for gaming crossover and anime fans.
 
-**Status:** Milestone 2 complete (Catalog foundation — DB, cache, API envelope, error boundaries)
-**Roadmap:** [`docs/master-roadmap.md`](docs/master-roadmap.md)
-**M1 Spec:** [`docs/milestone-1-project-foundation.md`](docs/milestone-1-project-foundation.md)
+**Status:** [Foundation `v0.1.0-foundation`](https://github.com/OWNER/nexus-anime/releases/tag/v0.1.0-foundation) released (M0 Repository scaffold + M1 Design system). Full validation pipeline green: install, lint, typecheck, build, format:check, docker build.
+**Roadmap:** [`ROADMAP.md`](ROADMAP.md) · [`docs/master-roadmap.md`](docs/master-roadmap.md)
+**Foundation Spec:** [`docs/milestone-1-project-foundation.md`](docs/milestone-1-project-foundation.md)
 
 ## Stack
 
