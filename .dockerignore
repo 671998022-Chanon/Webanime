@@ -1,0 +1,45 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+.turbo
+dist
+out
+build
+
+# Version control
+.git
+.gitattributes
+
+# Secrets — never copy into image
+.env
+.env.*
+!.env.example
+
+# Documentation (not needed at runtime)
+*.md
+docs
+LICENSE
+
+# CI
+.github
+
+# Tooling that is not part of the app build
+tooling/scripts
+
+# Docker files themselves (avoid recursive copy)
+docker-compose*.yml
+Dockerfile*
+.docker
+
+# OS / editor
+.DS_Store
+.idea
+*.iml
+.vscode
+
+# Logs
+*.log
+npm-debug.log*
