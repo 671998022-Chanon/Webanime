@@ -1,0 +1,88 @@
+/* @nexus/ui — Global color palette (Void, Aether, Nova, semantic) */
+/* Values from docs/04-design-system/Color-System.md and Tokens.md */
+
+:root {
+  /* Void — neutral cool-shifted scale */
+  --nexus-void-0: oklch(0.02 0.01 260);
+  --nexus-void-0-hex: #050810;
+  --nexus-void-1: oklch(0.06 0.02 260);
+  --nexus-void-1-hex: #0a0e1a;
+  --nexus-void-2: oklch(0.1 0.02 260);
+  --nexus-void-2-hex: #111627;
+  --nexus-void-3: oklch(0.14 0.02 260);
+  --nexus-void-3-hex: #171d30;
+  --nexus-void-4: oklch(0.18 0.02 260);
+  --nexus-void-4-hex: #1c2338;
+  --nexus-void-5: oklch(0.22 0.02 260);
+  --nexus-void-5-hex: #222840;
+  --nexus-void-6: oklch(0.28 0.02 260);
+  --nexus-void-6-hex: #2d3450;
+  --nexus-void-7: oklch(0.35 0.02 260);
+  --nexus-void-7-hex: #3a4160;
+  --nexus-void-8: oklch(0.45 0.02 260);
+  --nexus-void-8-hex: #505876;
+  --nexus-void-9: oklch(0.6 0.02 260);
+  --nexus-void-9-hex: #747c9e;
+  --nexus-void-10: oklch(0.75 0.02 260);
+  --nexus-void-10-hex: #a3aac6;
+  --nexus-void-11: oklch(0.88 0.01 260);
+  --nexus-void-11-hex: #cdd1e2;
+  --nexus-void-12: oklch(0.95 0.005 260);
+  --nexus-void-12-hex: #ecedf5;
+
+  /* Aether — primary cyan-blue */
+  --nexus-aether-1: oklch(0.3 0.1 230);
+  --nexus-aether-1-hex: #1a4a6b;
+  --nexus-aether-2: oklch(0.4 0.12 230);
+  --nexus-aether-2-hex: #2563a0;
+  --nexus-aether-3: oklch(0.5 0.14 230);
+  --nexus-aether-3-hex: #3380c4;
+  --nexus-aether-4: oklch(0.6 0.15 230);
+  --nexus-aether-4-hex: #4199d8;
+  --nexus-aether-5: oklch(0.7 0.15 230);
+  --nexus-aether-5-hex: #5bb2ea;
+  --nexus-aether-6: oklch(0.8 0.12 230);
+  --nexus-aether-6-hex: #82c7f5;
+  --nexus-aether-7: oklch(0.9 0.08 230);
+  --nexus-aether-7-hex: #b0ddfa;
+  --nexus-aether-8: oklch(0.95 0.04 230);
+  --nexus-aether-8-hex: #daedfc;
+
+  /* Nova — accent violet-magenta */
+  --nexus-nova-1: oklch(0.3 0.12 310);
+  --nexus-nova-1-hex: #6b1a5e;
+  --nexus-nova-2: oklch(0.45 0.15 310);
+  --nexus-nova-2-hex: #a0258a;
+  --nexus-nova-3: oklch(0.55 0.16 310);
+  --nexus-nova-3-hex: #c033a5;
+  --nexus-nova-4: oklch(0.65 0.15 310);
+  --nexus-nova-4-hex: #da44bc;
+  --nexus-nova-5: oklch(0.75 0.13 310);
+  --nexus-nova-5-hex: #ec66d4;
+  --nexus-nova-6: oklch(0.85 0.1 310);
+  --nexus-nova-6-hex: #f494e4;
+
+  /* Semantic colors */
+  --nexus-success: oklch(0.65 0.18 150);
+  --nexus-success-hex: #22c55e;
+  --nexus-success-muted: oklch(0.4 0.08 150);
+  --nexus-success-muted-hex: #166534;
+  --nexus-warning: oklch(0.75 0.16 85);
+  --nexus-warning-hex: #f59e0b;
+  --nexus-warning-muted: oklch(0.45 0.08 85);
+  --nexus-warning-muted-hex: #92400e;
+  --nexus-error: oklch(0.6 0.2 25);
+  --nexus-error-hex: #ef4444;
+  --nexus-error-muted: oklch(0.35 0.1 25);
+  --nexus-error-muted-hex: #7f1d1d;
+  --nexus-info: oklch(0.6 0.15 230);
+  --nexus-info-hex: #4199d8;
+
+  /* Specialty */
+  --nexus-platinum: oklch(0.85 0.02 80);
+  --nexus-platinum-hex: #d4cfc4;
+  --nexus-gold: oklch(0.8 0.12 85);
+  --nexus-gold-hex: #d4a017;
+  --nexus-streaming-live: oklch(0.65 0.22 25);
+  --nexus-streaming-live-hex: #e53e3e;
+}

@@ -1,0 +1,16 @@
+/* @nexus/ui — Light theme placeholder (Dawn) */
+/* Not implemented. Architecturally reserved for future theme. */
+/* Uncomment when Dawn theme is designed. */
+
+/*
+[data-theme="dawn"] {
+  --nexus-void-1: oklch(0.95 0.005 260);
+  --nexus-void-2: oklch(0.98 0.002 260);
+  --nexus-void-12: oklch(0.10 0.02 260);
+  --nexus-void-10: oklch(0.25 0.02 260);
+  --nexus-surface-base: var(--nexus-void-1);
+  --nexus-surface-raised: var(--nexus-void-2);
+  --nexus-text-primary: var(--nexus-void-12);
+  --nexus-text-secondary: var(--nexus-void-10);
+}
+*/

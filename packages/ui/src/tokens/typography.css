@@ -1,0 +1,35 @@
+/* @nexus/ui — Typography */
+/* Values from docs/04-design-system/Typography.md and Tokens.md */
+
+:root {
+  --nexus-font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --nexus-font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Text sizes */
+  --nexus-text-xs: 11px;
+  --nexus-text-sm: 12px;
+  --nexus-text-base: 14px;
+  --nexus-text-md: 16px;
+  --nexus-text-lg: 18px;
+  --nexus-text-xl: 22px;
+  --nexus-text-2xl: 28px;
+  --nexus-text-3xl: 35px;
+  --nexus-text-4xl: 44px;
+  --nexus-text-5xl: 55px;
+  --nexus-text-6xl: 69px;
+
+  /* Tracking */
+  --nexus-tracking-tight: -0.02em;
+  --nexus-tracking-normal: 0;
+  --nexus-tracking-wide: 0.02em;
+  --nexus-tracking-wider: 0.06em;
+  --nexus-tracking-widest: 0.12em;
+
+  /* Icon sizes */
+  --nexus-icon-xs: 12px;
+  --nexus-icon-sm: 16px;
+  --nexus-icon-md: 20px;
+  --nexus-icon-lg: 24px;
+  --nexus-icon-xl: 32px;
+  --nexus-icon-2xl: 48px;
+}

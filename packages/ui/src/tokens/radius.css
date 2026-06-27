@@ -1,0 +1,13 @@
+/* @nexus/ui — Border radius scale */
+/* Values from docs/04-design-system/Radius.md and Tokens.md */
+
+:root {
+  --nexus-radius-0: 0px;
+  --nexus-radius-1: 2px;
+  --nexus-radius-2: 4px;
+  --nexus-radius-3: 6px;
+  --nexus-radius-4: 8px;
+  --nexus-radius-5: 12px;
+  --nexus-radius-6: 16px;
+  --nexus-radius-full: 9999px;
+}

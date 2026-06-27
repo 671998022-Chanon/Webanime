@@ -1,0 +1,12 @@
+/* @nexus/ui — Backdrop blur scale */
+/* Values from docs/04-design-system/Blur.md and Tokens.md */
+
+:root {
+  --nexus-blur-xs: 4px;
+  --nexus-blur-sm: 8px;
+  --nexus-blur-md: 16px;
+  --nexus-blur-lg: 24px;
+  --nexus-blur-xl: 32px;
+  --nexus-blur-content-sm: 8px;
+  --nexus-blur-content-md: 20px;
+}

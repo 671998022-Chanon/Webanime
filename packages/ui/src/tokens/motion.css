@@ -1,0 +1,23 @@
+/* @nexus/ui — Duration and easing */
+/* Values from docs/04-design-system/Motion.md and Tokens.md */
+
+:root {
+  --nexus-duration-0: 0ms;
+  --nexus-duration-50: 50ms;
+  --nexus-duration-100: 100ms;
+  --nexus-duration-150: 150ms;
+  --nexus-duration-200: 200ms;
+  --nexus-duration-250: 250ms;
+  --nexus-duration-350: 350ms;
+  --nexus-duration-500: 500ms;
+  --nexus-duration-700: 700ms;
+  --nexus-duration-1000: 1000ms;
+
+  --nexus-ease-linear: cubic-bezier(0, 0, 1, 1);
+  --nexus-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --nexus-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --nexus-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --nexus-ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --nexus-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --nexus-ease-sluggish: cubic-bezier(0.5, 0, 0.3, 1);
+}

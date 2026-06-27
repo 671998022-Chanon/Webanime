@@ -1,0 +1,14 @@
+/* @nexus/ui — Elevation shadows */
+/* Values from docs/04-design-system/Shadows.md and Theme.md */
+
+:root {
+  --nexus-shadow-0: none;
+  --nexus-shadow-1: 0 1px 2px 0 oklch(0.02 0.01 260 / 0.3), 0 1px 3px 0 oklch(0.02 0.01 260 / 0.15);
+  --nexus-shadow-2: 0 2px 4px 0 oklch(0.02 0.01 260 / 0.35), 0 4px 8px 0 oklch(0.02 0.01 260 / 0.2);
+  --nexus-shadow-3:
+    0 4px 6px 0 oklch(0.02 0.01 260 / 0.4), 0 8px 16px 0 oklch(0.02 0.01 260 / 0.25),
+    0 2px 4px 0 oklch(0.02 0.01 260 / 0.15);
+  --nexus-shadow-4:
+    0 8px 12px 0 oklch(0.02 0.01 260 / 0.45), 0 16px 32px 0 oklch(0.02 0.01 260 / 0.3),
+    0 4px 8px 0 oklch(0.02 0.01 260 / 0.2);
+}

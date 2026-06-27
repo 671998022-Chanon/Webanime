@@ -1,0 +1,64 @@
+/* @nexus/ui — Semantic color tokens (surface, text, border, action) */
+/* Values from docs/04-design-system/Theme.md and Color-System.md */
+
+:root,
+[data-theme="midnight"] {
+  /* Surfaces */
+  --nexus-surface-base: var(--nexus-void-1);
+  --nexus-surface-raised: var(--nexus-void-2);
+  --nexus-surface-overlay: var(--nexus-void-3);
+  --nexus-surface-elevated: var(--nexus-void-4);
+  --nexus-surface-floating: var(--nexus-void-5);
+  --nexus-surface-sunken: var(--nexus-void-0);
+
+  /* Text */
+  --nexus-text-primary: var(--nexus-void-12);
+  --nexus-text-secondary: var(--nexus-void-10);
+  --nexus-text-tertiary: var(--nexus-void-9);
+  --nexus-text-placeholder: var(--nexus-void-8);
+  --nexus-text-disabled: var(--nexus-void-7);
+  --nexus-text-on-accent: var(--nexus-void-1);
+  --nexus-text-inverse: var(--nexus-void-1);
+
+  /* Borders */
+  --nexus-border-subtle: var(--nexus-void-6);
+  --nexus-border-default: var(--nexus-void-7);
+  --nexus-border-strong: var(--nexus-void-8);
+  --nexus-border-accent: var(--nexus-aether-4);
+
+  /* Actions */
+  --nexus-action-primary-bg: var(--nexus-aether-4);
+  --nexus-action-primary-hover: var(--nexus-aether-3);
+  --nexus-action-primary-pressed: var(--nexus-aether-2);
+  --nexus-action-primary-text: var(--nexus-void-1);
+  --nexus-action-secondary-bg: var(--nexus-void-3);
+  --nexus-action-secondary-hover: var(--nexus-void-4);
+  --nexus-action-secondary-text: var(--nexus-void-11);
+  --nexus-action-ghost-hover: var(--nexus-void-3);
+  --nexus-action-accent-bg: var(--nexus-nova-4);
+  --nexus-action-accent-text: var(--nexus-void-1);
+
+  /* Glows */
+  --nexus-glow-sm: 0 0 8px oklch(0.6 0.15 230 / 0.25);
+  --nexus-glow-md: 0 0 16px oklch(0.6 0.15 230 / 0.2);
+  --nexus-glow-lg: 0 0 24px oklch(0.6 0.15 230 / 0.15);
+  --nexus-glow-xl: 0 0 40px oklch(0.6 0.15 230 / 0.1);
+  --nexus-glow-nova-sm: 0 0 8px oklch(0.65 0.15 310 / 0.25);
+  --nexus-glow-nova-md: 0 0 16px oklch(0.65 0.15 310 / 0.2);
+
+  /* Gradients */
+  --nexus-gradient-surface: linear-gradient(180deg, var(--nexus-void-2), var(--nexus-void-1));
+  --nexus-gradient-hero: radial-gradient(
+    ellipse at 50% 0%,
+    oklch(0.7 0.15 230 / 0.15),
+    transparent 70%
+  );
+  --nexus-gradient-overlay: linear-gradient(180deg, transparent 50%, var(--nexus-void-1));
+  --nexus-gradient-accent: linear-gradient(135deg, var(--nexus-aether-4), var(--nexus-nova-4));
+  --nexus-gradient-shine: linear-gradient(
+    135deg,
+    transparent 40%,
+    oklch(0.88 0.01 260 / 0.05) 50%,
+    transparent 60%
+  );
+}
