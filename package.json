@@ -16,7 +16,12 @@
     "docker:up": "docker compose -f tooling/docker/docker-compose.yml up -d",
     "docker:down": "docker compose -f tooling/docker/docker-compose.yml down",
     "docker:reset": "docker compose -f tooling/docker/docker-compose.yml down -v && docker compose -f tooling/docker/docker-compose.yml up -d",
-    "docker:logs": "docker compose -f tooling/docker/docker-compose.yml logs -f"
+    "docker:logs": "docker compose -f tooling/docker/docker-compose.yml logs -f",
+    "docker:build": "docker compose build",
+    "docker:dev": "docker compose up -d --build",
+    "docker:prod": "docker compose up -d --build",
+    "docker:dev:down": "docker compose down",
+    "docker:prod:down": "docker compose down -v"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
