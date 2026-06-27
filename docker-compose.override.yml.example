@@ -1,0 +1,44 @@
+# Development override for Nexus Anime.
+#
+# Usage:
+#   1. Copy this file:  cp docker-compose.override.yml.example docker-compose.override.yml
+#   2. docker compose up -d  (the override is merged automatically)
+#
+# The override:
+#   - Mounts the host source tree into the web container for hot reload
+#   - Overrides the command to run `next dev` instead of `next start`
+#   - Uses the `builder` stage (not `runner`) so devDeps are available
+#   - Exposes the Next.js dev server port (3000) and React DevTools port (9229)
+#   - Adds .env file loading from host
+
+services:
+  web:
+    build:
+      target: builder
+    command: pnpm --filter @nexus/web dev
+    volumes:
+      # Source code mount for hot reload
+      - .:/app
+      # Prevent host node_modules from overwriting container node_modules
+      - /app/node_modules
+      - /app/apps/web/node_modules
+      - /app/packages/db/node_modules
+      - /app/packages/cache/node_modules
+      - /app/packages/ui/node_modules
+      - /app/packages/config-eslint/node_modules
+      # Named caches so dev installs/builds are hot across restarts
+      - pnpm-store:/home/node/.local/share/pnpm/store
+      - turbo-cache:/home/node/.cache/turbo
+    environment:
+      NODE_ENV: development
+      # Load env vars from .env.local if present on host
+      # (docker compose automatically loads .env from repo root, but this is explicit)
+      DATABASE_URL: postgresql://nexus:nexus@postgres:5432/nexus
+      REDIS_URL: redis://redis:6379
+      AUTH_SECRET: devonly-insecure-secret-change-me
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+    ports:
+      - "3000:3000"
+      - "9229:9229" # Node.js inspector / React DevTools
+    # In dev, don't restart on crash — let the developer see the error
+    restart: "no"
