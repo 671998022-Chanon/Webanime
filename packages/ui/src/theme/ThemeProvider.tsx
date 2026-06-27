@@ -116,6 +116,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- useTheme is a hook, not a component; exported alongside ThemeProvider for colocation
 export function useTheme(): ThemeState {
   const ctx = useContext(ThemeContext);
   if (!ctx) {
