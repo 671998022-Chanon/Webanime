@@ -233,3 +233,4 @@ export {
   AccordionTrigger,
   AccordionContent,
 } from "./components/accordion";
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/collapsible";

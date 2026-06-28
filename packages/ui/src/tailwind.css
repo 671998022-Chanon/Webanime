@@ -272,6 +272,25 @@
   }
 }
 
+/* Collapsible — expand/collapse using Radix-provided content height */
+@keyframes collapsible-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-accordion-down,
   .animate-accordion-up {
