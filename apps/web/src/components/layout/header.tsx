@@ -1,27 +1,18 @@
 "use client";
 
-import { Container, IconButton, Separator, cn } from "@nexus/ui";
+import { Container, IconButton, cn } from "@nexus/ui";
 import { Menu, Search, Bell } from "lucide-react";
 import Link from "next/link";
 
 import { useScrollPosition } from "@/hooks/use-scroll-position";
 
-/**
- * Global header — sticky, glassmorphic, 80px → 64px on scroll.
- * Renders on every page. Contains logo, search trigger, notification bell,
- * and mobile menu trigger. Desktop search and user menu are composed by
- * the parent layout (they slot into the header's right zone).
- *
- * Props:
- * - onMobileMenuToggle: callback to open mobile drawer
- * - children: slot for search bar and user menu (right zone)
- */
 interface HeaderProps {
   onMobileMenuToggle?: () => void;
+  onSearchOpen?: () => void;
   children?: React.ReactNode;
 }
 
-export function Header({ onMobileMenuToggle, children }: HeaderProps) {
+export function Header({ onMobileMenuToggle, onSearchOpen, children }: HeaderProps) {
   const { isScrolled } = useScrollPosition(10);
 
   return (
@@ -53,7 +44,6 @@ export function Header({ onMobileMenuToggle, children }: HeaderProps) {
             href="/"
             className="text-text-primary focus-visible:ring-aether-4/60 focus-visible:ring-offset-surface-base flex items-center gap-2 rounded-[var(--radius-2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           >
-            {/* Logo mark — abstract "N" shape in aether accent */}
             <svg
               width="28"
               height="28"
@@ -84,14 +74,11 @@ export function Header({ onMobileMenuToggle, children }: HeaderProps) {
           </Link>
         </div>
 
-        {/* Center zone: desktop search trigger (md+) */}
+        {/* Center zone: desktop search trigger */}
         <div className="mx-8 hidden max-w-md flex-1 items-center justify-center md:flex">
-          {/*
-            Search trigger is a placeholder slot — the real SearchBar component
-            from Task 7 will render here via children on desktop.
-          */}
           <button
             type="button"
+            onClick={onSearchOpen}
             className={cn(
               "flex w-full items-center gap-2 rounded-[var(--radius-4)]",
               "bg-surface-raised/60 border-border-subtle/60 border",
@@ -100,7 +87,7 @@ export function Header({ onMobileMenuToggle, children }: HeaderProps) {
               "focus-visible:border-border-accent focus-visible:ring-aether-4/60 focus-visible:ring-offset-surface-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
               "ease-spring transition-colors duration-150",
             )}
-            aria-label="Search anime"
+            aria-label="Search anime (⌘K)"
           >
             <Search className="size-4" aria-hidden="true" />
             <span className="flex-1 text-left">Search anime...</span>
@@ -121,8 +108,14 @@ export function Header({ onMobileMenuToggle, children }: HeaderProps) {
             <Bell className="size-5" />
           </IconButton>
           {children}
-          {/* Mobile search icon — visible only on small screens */}
-          <IconButton variant="ghost" size="sm" aria-label="Search" className="md:hidden">
+          {/* Mobile search icon */}
+          <IconButton
+            variant="ghost"
+            size="sm"
+            aria-label="Search"
+            className="md:hidden"
+            onClick={onSearchOpen}
+          >
             <Search className="size-5" />
           </IconButton>
         </div>

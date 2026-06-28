@@ -66,6 +66,8 @@ function CommandDialog({ children, ...props }: CommandDialogProps) {
 
 interface CommandInputProps extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> {
   className?: string;
+  /** Input placeholder text — surfaced separately because cmdk's complex Input prop typing omits it from the static surface. */
+  placeholder?: string;
 }
 
 const CommandInput = React.forwardRef<
