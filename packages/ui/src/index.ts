@@ -242,3 +242,4 @@ export {
   ScrollAreaCorner,
 } from "./components/scroll-area";
 export { AspectRatio } from "./components/aspect-ratio";
+export { AnimeCard, AnimeCardSkeleton } from "./components/anime-card";

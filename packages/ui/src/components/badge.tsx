@@ -7,7 +7,7 @@ import * as React from "react";
 
 import { cn } from "../lib/cn";
 
-const badgeVariants = cva(
+export const badgeVariants = cva(
   [
     "inline-flex items-center gap-1 rounded-[var(--radius-full)]",
     "font-medium leading-none whitespace-nowrap select-none",
