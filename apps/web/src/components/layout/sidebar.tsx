@@ -2,37 +2,10 @@
 
 import { IconButton, Separator, cn } from "@nexus/ui";
 import { WithTooltip } from "@nexus/ui";
-import {
-  Home,
-  Compass,
-  Clock,
-  Heart,
-  BookmarkPlus,
-  Settings,
-  PanelLeftClose,
-  PanelLeftOpen,
-} from "lucide-react";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-
-/** Navigation item consumed by the sidebar */
-interface NavItem {
-  href: string;
-  label: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
-
-/** Primary navigation items */
-const NAV_ITEMS: NavItem[] = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/browse", label: "Browse", icon: Compass },
-  { href: "/continue-watching", label: "Continue Watching", icon: Clock },
-  { href: "/watchlist", label: "Watchlist", icon: Heart },
-  { href: "/bookmarks", label: "Bookmarks", icon: BookmarkPlus },
-];
-
-/** Secondary navigation items (bottom) */
-const SECONDARY_ITEMS: NavItem[] = [{ href: "/settings", label: "Settings", icon: Settings }];
+import { NAV_ITEMS, SECONDARY_ITEMS, type NavItem } from "@/lib/nav-items";
 
 interface SidebarProps {
   /** Controlled collapsed state. If omitted, sidebar manages its own state. */

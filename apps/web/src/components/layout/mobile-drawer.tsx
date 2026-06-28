@@ -10,20 +10,10 @@ import {
   IconButton,
   cn,
 } from "@nexus/ui";
-import { Home, Compass, Clock, Heart, BookmarkPlus, Settings, X } from "lucide-react";
+import { X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-/** Navigation items — same as sidebar, re-declared for independence */
-const NAV_ITEMS = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/browse", label: "Browse", icon: Compass },
-  { href: "/continue-watching", label: "Continue Watching", icon: Clock },
-  { href: "/watchlist", label: "Watchlist", icon: Heart },
-  { href: "/bookmarks", label: "Bookmarks", icon: BookmarkPlus },
-] as const;
-
-const SECONDARY_ITEMS = [{ href: "/settings", label: "Settings", icon: Settings }] as const;
+import { NAV_ITEMS, SECONDARY_ITEMS } from "@/lib/nav-items";
 
 interface MobileDrawerProps {
   /** Whether the drawer is open. */

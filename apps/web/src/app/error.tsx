@@ -14,17 +14,18 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  // AppShell already renders the <main id="main-content"> wrapper, so the
+  // boundary must not nest a second one — duplicate ids break the SkipLink
+  // target and violate WCAG. ErrorStatePage is the direct child.
   return (
-    <main id="main-content" className="flex-1">
-      <ErrorStatePage
-        title="Something went wrong"
-        description={
-          error.message
-            ? `We encountered an error: ${error.message}`
-            : "We hit an unexpected error. Please try again."
-        }
-        onRetry={reset}
-      />
-    </main>
+    <ErrorStatePage
+      title="Something went wrong"
+      description={
+        error.message
+          ? `We encountered an error: ${error.message}`
+          : "We hit an unexpected error. Please try again."
+      }
+      onRetry={reset}
+    />
   );
 }
