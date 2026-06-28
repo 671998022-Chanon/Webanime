@@ -42,6 +42,8 @@ export interface DialogContentProps extends React.ComponentPropsWithoutRef<
   showClose?: boolean;
   /** Maximum width. @default "md" */
   size?: "sm" | "md" | "lg" | "xl";
+  /** Called when the overlay is clicked. Use to prevent default close behavior. */
+  onOverlayClick?: (event: React.MouseEvent) => void;
 }
 
 const sizeMap = {
@@ -54,10 +56,10 @@ const sizeMap = {
 export const DialogContent = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Content>,
   DialogContentProps
->(({ className, children, showClose = true, size = "md", ...props }, ref) => {
+>(({ className, children, showClose = true, size = "md", onOverlayClick, ...props }, ref) => {
   return (
     <DialogPrimitive.Portal>
-      <DialogOverlay />
+      <DialogOverlay onClick={onOverlayClick} />
       <DialogPrimitive.Content
         ref={ref}
         data-slot="dialog-content"
