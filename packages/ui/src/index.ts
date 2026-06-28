@@ -241,3 +241,4 @@ export {
   ScrollAreaThumb,
   ScrollAreaCorner,
 } from "./components/scroll-area";
+export { AspectRatio } from "./components/aspect-ratio";

@@ -293,7 +293,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-accordion-down,
-  .animate-accordion-up {
+  .animate-accordion-up,
+  .animate-collapsible-down,
+  .animate-collapsible-up {
     animation: none;
   }
 }
