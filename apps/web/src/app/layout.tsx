@@ -4,6 +4,7 @@ import { SkipLink } from "@nexus/ui";
 import type { Metadata, Viewport } from "next";
 
 import { Providers } from "@/providers";
+import { Header } from "@/components/layout/header";
 
 import "./globals.css";
 
@@ -28,7 +29,8 @@ export default function RootLayout({
       <body className="min-h-screen">
         <Providers>
           <SkipLink />
-          {children}
+          <Header />
+          <main id="main-content">{children}</main>
         </Providers>
       </body>
     </html>
