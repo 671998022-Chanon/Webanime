@@ -234,3 +234,10 @@ export {
   AccordionContent,
 } from "./components/accordion";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/collapsible";
+export {
+  ScrollArea,
+  ScrollAreaViewport,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+} from "./components/scroll-area";
