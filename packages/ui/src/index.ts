@@ -251,3 +251,4 @@ export {
 } from "./components/episode-card";
 export { StatCard } from "./components/stat-card";
 export { EmptyCollection } from "./components/empty-collection";
+export { DataGrid, DataGridItem } from "./components/data-grid";
