@@ -250,3 +250,4 @@ export {
   type EpisodeCardSkeletonProps,
 } from "./components/episode-card";
 export { StatCard } from "./components/stat-card";
+export { EmptyCollection } from "./components/empty-collection";
