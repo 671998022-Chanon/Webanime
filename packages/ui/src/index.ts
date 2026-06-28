@@ -72,6 +72,12 @@ export {
 } from "./components/select";
 export { Checkbox } from "./components/checkbox";
 export { Switch } from "./components/switch";
+export { Label } from "./components/label";
+export { FormMessage } from "./components/form-message";
+export { FormDescription } from "./components/form-description";
+export { FormField } from "./components/form-field";
+export { PasswordInput } from "./components/password-input";
+export { Combobox, type ComboboxOption, type ComboboxProps } from "./components/combobox";
 export {
   ToastProvider,
   ToastViewport,
