@@ -227,3 +227,9 @@ export {
   TableCell,
   TableCaption,
 } from "./components/table";
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/accordion";
