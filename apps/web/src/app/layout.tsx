@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved -- workspace link @nexus/ui resolves at build time */
-import { ThemeProvider } from "@nexus/ui";
+import { SkipLink, ThemeProvider } from "@nexus/ui";
 
 import type { Metadata, Viewport } from "next";
 
@@ -23,8 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="midnight" suppressHydrationWarning>
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="min-h-screen">
+        <ThemeProvider>
+          <SkipLink />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
