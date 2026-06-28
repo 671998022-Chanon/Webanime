@@ -37,6 +37,78 @@ export {
   DialogTitle,
   DialogDescription,
 } from "./components/dialog";
+export {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "./components/alert-dialog";
+export {
+  Drawer,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+  type DrawerDirection,
+} from "./components/drawer";
+export {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetOverlay,
+  SheetContent,
+  SheetHeader,
+  SheetBody,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+  type SheetDirection,
+} from "./components/sheet";
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from "./components/popover";
+export { HoverCard, HoverCardTrigger, HoverCardContent } from "./components/hover-card";
+export {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuLabel,
+  ContextMenuGroup,
+  ContextMenuPortal,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+} from "./components/context-menu";
+export {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarLabel,
+  MenubarGroup,
+  MenubarPortal,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarShortcut,
+} from "./components/menubar";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/tabs";
 export { Avatar } from "./components/avatar";
 export { Skeleton, SkeletonText, SkeletonAvatar, SkeletonRect } from "./components/skeleton";
