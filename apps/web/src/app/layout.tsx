@@ -1,7 +1,9 @@
 /* eslint-disable import/no-unresolved -- workspace link @nexus/ui resolves at build time */
-import { SkipLink, ThemeProvider } from "@nexus/ui";
+import { SkipLink } from "@nexus/ui";
 
 import type { Metadata, Viewport } from "next";
+
+import { Providers } from "@/providers";
 
 import "./globals.css";
 
@@ -24,10 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="midnight" suppressHydrationWarning>
       <body className="min-h-screen">
-        <ThemeProvider>
+        <Providers>
           <SkipLink />
           {children}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
