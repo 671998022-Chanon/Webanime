@@ -10,12 +10,12 @@ import * as React from "react";
 import { cn } from "../lib/cn";
 
 import { Badge, type BadgeProps } from "./badge";
-import { Card, CardHeader, CardBody, CardFooter } from "./card";
+import { Card } from "./card";
 import { Skeleton } from "./skeleton";
 
 type BadgeVariant = BadgeProps["variant"];
 
-export interface AnimeCardProps {
+export interface AnimeCardProps extends React.HTMLAttributes<HTMLElement> {
   /** Anime title — used for image alt and aria-label. */
   title: string;
   /** Cover image src. Use next/image for optimization. */
@@ -28,8 +28,6 @@ export interface AnimeCardProps {
   inWatchlist?: boolean;
   /** Optional badge variant override. @default "default" */
   badgeVariant?: BadgeVariant;
-  /** Optional className for the root card. */
-  className?: string;
   /** Click handler for the card body (navigate to detail). */
   onClick?: () => void;
   /** Watchlist toggle handler. */
@@ -48,20 +46,24 @@ function scoreBadgeVariant(score: number): BadgeVariant {
   return "error";
 }
 
-export function AnimeCard({
-  title,
-  coverUrl,
-  score,
-  episodeCount,
-  inWatchlist = false,
-  badgeVariant,
-  className,
-  onClick,
-  onWatchlistToggle,
-  imageWidth = 300,
-  imageHeight = 420,
-  loading = false,
-}: AnimeCardProps) {
+export const AnimeCard = React.forwardRef<HTMLElement, AnimeCardProps>(function AnimeCard(
+  {
+    title,
+    coverUrl,
+    score,
+    episodeCount,
+    inWatchlist = false,
+    badgeVariant,
+    className,
+    onClick,
+    onWatchlistToggle,
+    imageWidth = 300,
+    imageHeight = 420,
+    loading = false,
+    ...props
+  },
+  ref,
+) {
   if (loading) {
     return <AnimeCardSkeleton className={className} />;
   }
@@ -71,14 +73,16 @@ export function AnimeCard({
 
   return (
     <Card
+      ref={ref}
       data-slot="anime-card"
       variant="default"
       interactive={!!onClick}
       className={cn("group w-full max-w-[220px]", className)}
       onClick={onClick}
       aria-label={title}
+      {...props}
     >
-      <CardHeader className="relative overflow-hidden rounded-t-[var(--radius-5)] p-0">
+      <Card.Header className="relative overflow-hidden rounded-t-[var(--radius-5)] p-0">
         {coverUrl ? (
           <Image
             src={coverUrl}
@@ -90,7 +94,7 @@ export function AnimeCard({
             loading="lazy"
           />
         ) : (
-          <Skeleton className="w-full" style={{ aspectRatio: `${imageWidth}/${imageHeight}` }} />
+          <Skeleton className={cn("w-full", `aspect-[${imageWidth}/${imageHeight}]`)} />
         )}
         {computedBadge && score !== undefined && (
           <Badge
@@ -101,15 +105,15 @@ export function AnimeCard({
             {score.toFixed(1)}
           </Badge>
         )}
-      </CardHeader>
-      <CardBody className="gap-1 p-3">
+      </Card.Header>
+      <Card.Body className="gap-1 p-3">
         <p className="text-text-primary line-clamp-2 text-sm font-medium leading-snug">{title}</p>
         {episodeCount !== undefined && (
           <p className="text-text-secondary text-xs">{episodeCount} episodes</p>
         )}
-      </CardBody>
+      </Card.Body>
       {onWatchlistToggle && (
-        <CardFooter className="p-3 pt-0">
+        <Card.Footer className="p-3 pt-0">
           <button
             type="button"
             onClick={(e) => {
@@ -132,30 +136,39 @@ export function AnimeCard({
             {inWatchlist ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
             {inWatchlist ? "In Watchlist" : "Watchlist"}
           </button>
-        </CardFooter>
+        </Card.Footer>
       )}
     </Card>
   );
-}
+});
 
 AnimeCard.displayName = "AnimeCard";
 
-export function AnimeCardSkeleton({ className }: { className?: string }) {
-  return (
-    <Card
-      data-slot="anime-card"
-      variant="default"
-      className={cn("w-full max-w-[220px]", className)}
-    >
-      <CardHeader className="p-0">
-        <Skeleton className="aspect-[3/4] w-full rounded-t-[var(--radius-5)]" />
-      </CardHeader>
-      <CardBody className="gap-2 p-3">
-        <Skeleton className="h-4 w-3/4" />
-        <Skeleton className="h-3 w-1/2" />
-      </CardBody>
-    </Card>
-  );
+export interface AnimeCardSkeletonProps extends React.HTMLAttributes<HTMLElement> {
+  /** Optional className for the skeleton card. */
+  className?: string;
 }
+
+export const AnimeCardSkeleton = React.forwardRef<HTMLElement, AnimeCardSkeletonProps>(
+  function AnimeCardSkeleton({ className, ...props }, ref) {
+    return (
+      <Card
+        ref={ref}
+        data-slot="anime-card"
+        variant="default"
+        className={cn("w-full max-w-[220px]", className)}
+        {...props}
+      >
+        <Card.Header className="p-0">
+          <Skeleton className="aspect-[3/4] w-full rounded-t-[var(--radius-5)]" />
+        </Card.Header>
+        <Card.Body className="gap-2 p-3">
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-3 w-1/2" />
+        </Card.Body>
+      </Card>
+    );
+  },
+);
 
 AnimeCardSkeleton.displayName = "AnimeCardSkeleton";

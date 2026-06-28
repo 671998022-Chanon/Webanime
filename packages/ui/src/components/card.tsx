@@ -91,8 +91,6 @@ const CardHeader = slot("Card.Header", "flex flex-col gap-2 p-4 pb-0");
 const CardBody = slot("Card.Body", "flex flex-col gap-3 p-4");
 const CardFooter = slot("Card.Footer", "flex items-center gap-2 p-4 pt-0 mt-auto");
 
-export { CardHeader, CardBody, CardFooter };
-
 export const Card = Object.assign(CardRoot, {
   Header: CardHeader,
   Body: CardBody,

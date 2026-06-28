@@ -243,3 +243,10 @@ export {
 } from "./components/scroll-area";
 export { AspectRatio } from "./components/aspect-ratio";
 export { AnimeCard, AnimeCardSkeleton } from "./components/anime-card";
+export {
+  EpisodeCard,
+  EpisodeCardSkeleton,
+  type EpisodeCardProps,
+  type EpisodeCardSkeletonProps,
+} from "./components/episode-card";
+export { StatCard } from "./components/stat-card";
