@@ -35,19 +35,15 @@ const trendStyles: Record<TrendDirection, { icon: LucideIcon; classes: string }>
   flat: { icon: Minus, classes: "text-text-secondary" },
 };
 
-export function StatCard({
-  icon: Icon,
-  label,
-  value,
-  trend,
-  trendValue,
-  className,
-}: StatCardProps) {
+export const StatCard = React.forwardRef<HTMLElement, StatCardProps>(function StatCard(
+  { icon: Icon, label, value, trend, trendValue, className },
+  ref,
+) {
   const trendMeta = trend ? trendStyles[trend] : null;
   const TrendIcon = trendMeta?.icon;
 
   return (
-    <Card variant="glass" className={cn("w-full", className)} data-slot="stat-card">
+    <Card ref={ref} variant="glass" data-slot="stat-card" className={cn("w-full", className)}>
       <Card.Body className="flex items-start gap-4 p-5">
         <div className="bg-aether-4/15 text-aether-7 flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-4)]">
           <Icon className="h-5 w-5" aria-hidden="true" />
@@ -70,6 +66,6 @@ export function StatCard({
       </Card.Body>
     </Card>
   );
-}
+});
 
 StatCard.displayName = "StatCard";
