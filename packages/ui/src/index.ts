@@ -218,3 +218,12 @@ export {
   CommandShortcut,
   CommandLoading,
 } from "./components/command";
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from "./components/table";
