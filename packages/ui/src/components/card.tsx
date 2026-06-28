@@ -44,11 +44,11 @@ function CardRootImpl(
   );
 
   // Callback ref keeps the polymorphic cast contained — consumers see HTMLElement.
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- stable per render
+
   const setRef = React.useCallback(
     (node: HTMLElement | null) => {
       if (typeof ref === "function") ref(node);
-      else if (ref) (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+      else if (ref) ref.current = node;
     },
     [ref],
   );
@@ -79,7 +79,7 @@ CardRoot.displayName = "Card.Root";
 
 export interface CardSubProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-function slot(displayName: string, baseClasses: string, forwardRef = true) {
+function slot(displayName: string, baseClasses: string) {
   const Inner = React.forwardRef<HTMLDivElement, CardSubProps>(({ className, ...props }, ref) => (
     <div ref={ref} className={cn(baseClasses, className)} {...props} />
   ));

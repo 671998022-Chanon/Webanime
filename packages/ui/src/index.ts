@@ -1,5 +1,4 @@
 // @nexus/ui — design system primitives (Tailwind 4 + React 19)
-/* eslint-disable import/no-unresolved -- relative TS imports resolved by tsconfig project */
 
 // Utilities
 export { cn } from "./lib/cn";

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved -- relative TS imports resolved by tsconfig project */
 // @nexus/ui — ScrollArea primitive (Radix-based)
 // ScrollArea.Root > ScrollArea.Viewport + ScrollArea.Scrollbar > ScrollArea.Thumb + ScrollArea.Corner
 

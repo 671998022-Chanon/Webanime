@@ -37,7 +37,7 @@ export function Container({
 
   if (asChild) {
     return (
-      <Slot className={classes} {...(props as React.ComponentPropsWithoutRef<typeof Slot>)}>
+      <Slot className={classes} {...props}>
         {children}
       </Slot>
     );

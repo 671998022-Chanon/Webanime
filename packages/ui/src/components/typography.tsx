@@ -59,23 +59,12 @@ const typographyVariants = cva("", {
   },
 });
 
-const ELEMENT_MAP = {
-  p: "p",
-  span: "span",
-  h1: "h1",
-  h2: "h2",
-  h3: "h3",
-  h4: "h4",
-  h5: "h5",
-  h6: "h6",
-  label: "label",
-  div: "div",
-} as const;
+type TypographyElement = "p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "label" | "div";
 
 export interface TypographyProps
   extends React.HTMLAttributes<HTMLElement>, VariantProps<typeof typographyVariants> {
   /** HTML element to render. @default "p" */
-  element?: keyof typeof ELEMENT_MAP;
+  element?: TypographyElement;
   /** Use Slot to merge props onto a child element. */
   asChild?: boolean;
 }
@@ -95,7 +84,7 @@ export function Typography({
 
   if (asChild) {
     return (
-      <Slot className={classes} {...(props as React.ComponentPropsWithoutRef<typeof Slot>)}>
+      <Slot className={classes} {...props}>
         {children}
       </Slot>
     );

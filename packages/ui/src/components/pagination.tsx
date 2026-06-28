@@ -15,8 +15,9 @@ import {
 } from "lucide-react";
 import * as React from "react";
 
-import { buttonVariants } from "./button";
 import { cn } from "../lib/cn";
+
+import { buttonVariants } from "./button";
 
 /* ---------------- Context ---------------- */
 

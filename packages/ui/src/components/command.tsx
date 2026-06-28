@@ -5,18 +5,13 @@
 // Activation (⌘K shortcut) is the consumer's responsibility — this file only
 // provides the palette.";
 
-import * as React from "react";
 import { type DialogProps } from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
+import * as React from "react";
 
-import { Dialog, DialogContent, type DialogContentProps } from "./dialog";
 import { cn } from "../lib/cn";
 
-/* ---------------- helpers ---------------- */
-
-type RadixContentProps = React.ComponentPropsWithoutRef<
-  typeof import("@radix-ui/react-dialog").DialogContent
->;
+import { Dialog, DialogContent } from "./dialog";
 
 /* ---------------- CommandDialog ---------------- */
 

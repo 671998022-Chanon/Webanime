@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */ // buttonVariants (CVA) co-located by convention
 // @nexus/ui — Button primitive
 // Variants: primary, secondary, ghost, destructive, accent, link
 // Sizes: sm, md (default), lg, xl
@@ -8,6 +9,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../lib/cn";
+
 import { Spinner } from "./spinner";
 
 export const buttonVariants = cva(
@@ -89,7 +91,7 @@ export function Button({
 
   if (asChild) {
     return (
-      <Slot {...sharedProps} {...(props as React.ComponentPropsWithoutRef<typeof Slot>)}>
+      <Slot {...sharedProps} {...props}>
         {loading ? <Spinner className="animate-spin" /> : children}
       </Slot>
     );

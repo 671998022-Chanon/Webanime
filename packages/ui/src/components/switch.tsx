@@ -18,7 +18,8 @@ export const Switch = React.forwardRef<
   React.ComponentRef<typeof SwitchPrimitives.Root>,
   SwitchProps
 >(({ className, label, id, ...props }, ref) => {
-  const inputId = id ?? React.useId();
+  const generatedId = React.useId();
+  const inputId = id ?? generatedId;
 
   return (
     <label

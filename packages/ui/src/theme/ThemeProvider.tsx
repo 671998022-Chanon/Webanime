@@ -16,7 +16,6 @@ import {
   type ReactNode,
 } from "react";
 
-/* eslint-disable import/no-unresolved -- relative TS import resolved by tsconfig project */
 import {
   THEME_COOKIE_NAME,
   THEME_STORAGE_KEY,

@@ -3,9 +3,9 @@
 // Generic — accepts episode number, title, thumbnail, duration, and watch progress.
 // No data fetching. Pure presentational.
 
-import * as React from "react";
-import Image from "next/image";
 import { Play } from "lucide-react";
+import Image from "next/image";
+import * as React from "react";
 
 import { cn } from "../lib/cn";
 

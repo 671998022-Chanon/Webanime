@@ -20,9 +20,10 @@
 
 import * as React from "react";
 
+import { cn } from "../lib/cn";
+
 import { FormDescription } from "./form-description";
 import { FormMessage } from "./form-message";
-import { cn } from "../lib/cn";
 
 export interface RenderFieldProps {
   /** The id that the control should use for id and label htmlFor. */

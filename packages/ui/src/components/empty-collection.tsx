@@ -5,13 +5,14 @@
 
 import * as React from "react";
 
+import { cn } from "../lib/cn";
+
 import {
   EmptyState,
   EmptyStateTitle,
   EmptyStateDescription,
   EmptyStateActions,
 } from "./empty-state";
-import { cn } from "../lib/cn";
 
 type CollectionKind = "anime" | "episode" | "watchlist" | "search" | "generic";
 

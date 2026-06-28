@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */ // linkButtonVariants (CVA) co-located by convention
 // @nexus/ui — LinkButton primitive
 // Polymorphic button that renders as an <a> element.
 // Shares Button's visual variant system but replaces disabled/loading
@@ -85,7 +86,7 @@ export function LinkButton({
 
   if (asChild) {
     return (
-      <Slot {...sharedProps} {...(props as React.ComponentPropsWithoutRef<typeof Slot>)}>
+      <Slot {...sharedProps} {...props}>
         {children}
       </Slot>
     );

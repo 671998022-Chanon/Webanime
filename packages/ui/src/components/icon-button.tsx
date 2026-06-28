@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */ // iconButtonVariants (CVA) co-located by convention
 // @nexus/ui — IconButton primitive
 // Square button for icon-only actions. Enforces accessible labelling.
 // Variants and sizes mirror Button. Uses the same CVA class set.
@@ -7,6 +8,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../lib/cn";
+
 import { Spinner } from "./spinner";
 
 export const iconButtonVariants = cva(
@@ -89,7 +91,7 @@ export function IconButton({
 
   if (asChild) {
     return (
-      <Slot {...sharedProps} {...(props as React.ComponentPropsWithoutRef<typeof Slot>)}>
+      <Slot {...sharedProps} {...props}>
         {loading ? <Spinner className="animate-spin" /> : children}
       </Slot>
     );
