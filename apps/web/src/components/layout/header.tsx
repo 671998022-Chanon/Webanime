@@ -3,8 +3,10 @@
 import { Container, IconButton, cn } from "@nexus/ui";
 import { Menu, Search, Bell } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { useScrollPosition } from "@/hooks/use-scroll-position";
+import { HEADER_NAV_ITEMS } from "@/lib/nav-items";
 
 interface HeaderProps {
   onMobileMenuToggle?: () => void;
@@ -14,6 +16,7 @@ interface HeaderProps {
 
 export function Header({ onMobileMenuToggle, onSearchOpen, children }: HeaderProps) {
   const { isScrolled } = useScrollPosition(10);
+  const pathname = usePathname();
 
   return (
     <header
@@ -73,6 +76,34 @@ export function Header({ onMobileMenuToggle, onSearchOpen, children }: HeaderPro
             </span>
           </Link>
         </div>
+
+        {/* Center-left zone: desktop navigation */}
+        <nav aria-label="Main navigation" className="mx-4 hidden items-center gap-1 md:flex">
+          {HEADER_NAV_ITEMS.map((item) => {
+            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative rounded-[var(--radius-2)] px-3 py-1.5 text-sm transition-colors duration-150",
+                  "hover:bg-action-ghost-hover hover:text-text-primary",
+                  "focus-visible:ring-aether-4/60 focus-visible:ring-offset-surface-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  isActive ? "text-text-primary font-medium" : "text-text-secondary",
+                )}
+              >
+                {item.label}
+                {isActive && (
+                  <span
+                    aria-hidden="true"
+                    className="bg-action-primary-bg absolute bottom-0 left-3 right-3 h-0.5 rounded-full"
+                  />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
 
         {/* Center zone: desktop search trigger */}
         <div className="mx-8 hidden max-w-md flex-1 items-center justify-center md:flex">
