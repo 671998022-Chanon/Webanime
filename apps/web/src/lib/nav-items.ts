@@ -20,3 +20,12 @@ export const NAV_ITEMS: NavItem[] = [
 export const SECONDARY_ITEMS: NavItem[] = [
   { href: "/settings", label: "Settings", icon: Settings },
 ];
+
+/** Header navigation items — desktop global nav in the header. */
+export const HEADER_NAV_ITEMS = [
+  { href: "/", label: "Home" },
+  { href: "/trending", label: "Trending" },
+  { href: "/latest", label: "Latest" },
+  { href: "/genres", label: "Genres" },
+  { href: "/schedule", label: "Schedule" },
+] as const;
