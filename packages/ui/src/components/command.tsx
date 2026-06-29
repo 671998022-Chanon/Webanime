@@ -68,6 +68,10 @@ interface CommandInputProps extends React.ComponentPropsWithoutRef<typeof Comman
   className?: string;
   /** Input placeholder text — surfaced separately because cmdk's complex Input prop typing omits it from the static surface. */
   placeholder?: string;
+  /** Controlled input value — surfaced separately because cmdk's complex Input prop typing omits it from the static surface. */
+  value?: string;
+  /** Controlled change handler — surfaced separately because cmdk's complex Input prop typing omits it from the static surface. */
+  onValueChange?: (value: string) => void;
 }
 
 const CommandInput = React.forwardRef<
