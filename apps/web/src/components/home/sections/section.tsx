@@ -10,6 +10,8 @@ import { Container, Typography } from "@nexus/ui";
 interface SectionShellProps {
   /** Visible heading text. */
   title: string;
+  /** Optional subtitle rendered beneath the heading. */
+  subtitle?: string;
   /** ID used for `aria-labelledby` on the section element. Should be kebab-case. */
   id: string;
   /** Optional content rendered below the heading — typically an empty-state placeholder. */
@@ -25,7 +27,7 @@ interface SectionShellProps {
  * aria-labelledby linking to the heading; uses Container's 2xl max-width and
  * responsive padding.
  */
-export function SectionShell({ title, id, children, visible = true }: SectionShellProps) {
+export function SectionShell({ title, subtitle, id, children, visible = true }: SectionShellProps) {
   if (!visible) return null;
 
   const headingId = `home-${id}-heading`;
@@ -39,15 +41,22 @@ export function SectionShell({ title, id, children, visible = true }: SectionShe
     >
       <Container size="full" className="px-0">
         <header className="mb-4 flex items-end justify-between gap-4 md:mb-6">
-          <Typography
-            element="h2"
-            id={headingId}
-            size="xl"
-            weight="semibold"
-            className="text-text-primary"
-          >
-            {title}
-          </Typography>
+          <div className="min-w-0">
+            <Typography
+              element="h2"
+              id={headingId}
+              size="xl"
+              weight="semibold"
+              className="text-text-primary"
+            >
+              {title}
+            </Typography>
+            {subtitle ? (
+              <Typography element="p" size="sm" className="text-text-tertiary mt-0.5">
+                {subtitle}
+              </Typography>
+            ) : null}
+          </div>
           {/* "See all →" placeholder — purely visual until the rail is wired up.
               Hidden from the accessibility tree; the real control replaces it. */}
           <span
