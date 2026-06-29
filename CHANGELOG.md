@@ -33,6 +33,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v0.3.0-application-shell] — 2026-06-29
+
+Application Shell release. The full navigation + layout shell is green across `turbo run lint`, `turbo run typecheck`, `turbo run build` and is ready for Homepage development (Step 14).
+
+### Added
+
+- **Import resolution for `@nexus/web` lint:** installed `eslint-import-resolver-typescript` and wired `import/resolver` (typescript + node) in `apps/web/eslint.config.js` so `import/no-unresolved` can resolve both the `@/` tsconfig path alias and the `@nexus/ui` workspace package. Previously the rule flagged every workspace/alias import as missing (the shared config enabled the rule but shipped no resolver).
+- **`tsconfig.lint.json`** for `@nexus/web`: extends the build tsconfig and adds `packages/ui/src/**` to `include` so the type-checked lint rules (`no-unsafe-*`, `no-misused-promises`) can resolve types that originate in the UI package. The build's `tsc` still uses `tsconfig.json`.
+- **`@nexus/ui` path mapping** in `apps/web/tsconfig.json` (`@nexus/ui` → `packages/ui/src/index.ts`) so the typescript-eslint parser honors the workspace import for non-relative resolution.
+- **SearchBar Cmd+K binding stabilized:** the global keydown handler now reads open-state through a ref (`isOpenRef`) and lists `setIsOpen` in its dependency array, fixing the `react-hooks/exhaustive-deps` warning and avoiding re-binding the listener on every toggle.
+- **Footer version bumped** to `v0.3.0 · Application Shell · 2026.06.29`.
+
+### Removed
+
+- **`apps/web/src/components/ui/button.tsx`** (and the now-empty `components/ui/` dir): an unused re-export shim. `Button` is imported directly from `@nexus/ui` everywhere; the shim was leftover shadcn scaffolding and triggered `react-refresh/only-export-components`.
+
+### Fixed
+
+- **Lint debt in `@nexus/web` (validation-discovered):**
+  - `loading-skeleton.tsx`, `search-overlay.tsx`: consolidated duplicate `@nexus/ui` imports (`import/no-duplicates`).
+  - `global-error.tsx`: dropped the unused `error` destructured param (kept in the Next.js signature type).
+  - `search-overlay.tsx`: removed the unused `Search` import.
+  - 7 files: `eslint --fix` corrected `import/order` grouping and alphabetization.
+  - `search-anime-card.tsx`: added targeted `eslint-disable-next-line` for two `score.toFixed(1)` false positives — the `no-unsafe-*` rule can't resolve `CommandItem`'s forwardRef-derived props (cmdk types) in its lint-time TS program, while `tsc` resolves `score` as `number` (verified via the compiler API). Context comment included; see `tsconfig.lint.json`.
+
+### Known limitations
+
+- `@nexus/ui` itself still ships 14 warn-level `no-unsafe-*` findings (cn.ts / tailwind-merge typing); these are warnings, not errors, and are outside the shell scope. They do not block lint/typecheck/build.
+- `nav-items.ts` surfaces 19 warn-level `no-unsafe-assignment` findings for lucide icon components assigned to the `icon: React.ComponentType<{className?: string}>` field. These are benign (the icons are valid components) and are a warn-level lint-program type-resolution limitation, not a type error — `tsc` typechecks the file cleanly.
+- The two `no-unsafe-call`/`no-unsafe-member-access` disables in `search-anime-card.tsx` are the only inline lint suppressions added; both are verified false positives with explanatory comments.
+- No Storybook; no unit tests; a11y and interaction testing is manual (tracked for M4).
+- Footer social links remain placeholders (`href="#"`) until social accounts are established.
+
+### Security
+
+- N/A.
+
+---
+
 ## [v0.2.0-ui-library] — 2026-06-28
 
 ### Added
@@ -64,7 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Known limitations.
 
 - `@nexus/ui` does not ship compiled output (`dist/`); it is consumed via the workspace package reference (`"private": true`) and exposed through `packages/ui/src/index.ts`. Tree-shaking and barrel-import cost are not measured. The package is ready for source-tree consumption by `apps/web`.
-- `eslint-import-resolver-typescript` is not installed (`import/resolver` requires it for tsconfig-aware resolution). `turbo run lint` therefore relies on `tsc --noEmit` and `next build` for actual import validation. Installing the resolver is tracked in the M4 tech-debt backlog.
+- ~~`eslint-import-resolver-typescript` is not installed~~ — **resolved in v0.3.0.** The resolver is now a `@nexus/web` devDependency and wired into `apps/web/eslint.config.js`, so `import/no-unresolved` validates both `@/` aliases and `@nexus/*` workspace imports during lint.
 - Rules of stylistic strictness (`@typescript-eslint/no-unsafe-assignment`, `no-unsafe-argument`) fire at warn-level in ~14 components. These are suppression-friendly and intentionally not blocking the release; they can be refined per-component during M3 development.
 - No Storybook; component visual coverage relies on manual review at `apps/web/dev/components` (M0 design showcase) and per-component inspection.
 - No unit tests; a11y and interaction testing is manual. Tracked for M4.
@@ -101,7 +140,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial repository initialization (Step 1 + Step 2 foundation files).
 
-[Unreleased]: https://github.com/OWNER/nexus-anime/compare/v0.2.0-ui-library...HEAD
+[Unreleased]: https://github.com/OWNER/nexus-anime/compare/v0.3.0-application-shell...HEAD
+[v0.3.0-application-shell]: https://github.com/OWNER/nexus-anime/releases/tag/v0.3.0-application-shell
 [v0.2.0-ui-library]: https://github.com/OWNER/nexus-anime/releases/tag/v0.2.0-ui-library
 [v0.1.0-foundation]: https://github.com/OWNER/nexus-anime/releases/tag/v0.1.0-foundation
 [0.1.0]: https://github.com/OWNER/nexus-anime/releases/tag/v0.1.0

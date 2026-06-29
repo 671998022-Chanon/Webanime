@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import { MobileDrawer } from "@/components/layout/mobile-drawer";
 import { SearchBar } from "@/components/search/search-bar";
 import { ThemeToggle } from "@/components/user/theme-toggle";

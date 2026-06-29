@@ -5,9 +5,9 @@ import { Menu, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { NotificationsPanel } from "@/components/user/notifications-panel";
 import { useScrollPosition } from "@/hooks/use-scroll-position";
 import { HEADER_NAV_ITEMS } from "@/lib/nav-items";
-import { NotificationsPanel } from "@/components/user/notifications-panel";
 
 interface HeaderProps {
   onMobileMenuToggle?: () => void;

@@ -12,7 +12,25 @@ export default tseslint.config(...nexusConfig, {
   files: ["**/*.{ts,tsx}"],
   languageOptions: {
     parserOptions: {
-      project: ["./tsconfig.json"],
+      // Use the lint-specific tsconfig (tsconfig.lint.json) which also folds
+      // in packages/ui's source so the type-checked rules can resolve types
+      // that originate there. The build's `tsc` still uses tsconfig.json.
+      project: ["./tsconfig.lint.json"],
+    },
+  },
+  // Without a resolver, import/no-unresolved treats the `@/` tsconfig path
+  // alias and the `@nexus/ui` workspace package as missing modules (the
+  // shared config enables the rule but is parser-agnostic). Wire both here:
+  // typescript reads tsconfig paths + node extends resolution to the pnpm
+  // workspace symlink, so `@/...` and `@nexus/*` both resolve.
+  settings: {
+    "import/resolver": {
+      typescript: {
+        project: "./tsconfig.lint.json",
+      },
+      node: {
+        extensions: [".ts", ".tsx"],
+      },
     },
   },
 });

@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import {
   Dropdown,
   DropdownTrigger,
@@ -17,6 +15,7 @@ import {
   cn,
 } from "@nexus/ui";
 import { Bell } from "lucide-react";
+import { useState } from "react";
 
 interface Notification {
   id: string;

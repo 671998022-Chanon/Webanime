@@ -39,7 +39,15 @@ export const SearchAnimeCard = React.forwardRef<
       aria-label={
         loading
           ? "Loading"
-          : `${title}, ${type}${episodeCount !== undefined ? `, ${episodeCount} episodes` : ""}${score !== undefined ? `, rated ${score.toFixed(1)}` : ""}`
+          : `${title}, ${type}${episodeCount !== undefined ? `, ${episodeCount} episodes` : ""}${
+              // score?: number is narrowed by the guard above. The no-unsafe-*
+              // rule flags .toFixed here because it can't resolve CommandItem's
+              // forwardRef-derived props (cmdk types) in its lint-time TS
+              // program — tsc resolves `score` as `number` (verified). Suppress
+              // the false positive; see tsconfig.lint.json for context.
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+              score !== undefined ? `, rated ${score.toFixed(1)}` : ""
+            }`
       }
       className={cn("items-start gap-3 py-2", className)}
       {...props}
@@ -76,6 +84,7 @@ export const SearchAnimeCard = React.forwardRef<
               {score !== undefined && (
                 <span className="inline-flex items-center gap-0.5 text-xs text-[var(--nexus-nova-4)]">
                   <Star className="size-3" aria-hidden="true" />
+                  {/* eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */}
                   {score.toFixed(1)}
                 </span>
               )}

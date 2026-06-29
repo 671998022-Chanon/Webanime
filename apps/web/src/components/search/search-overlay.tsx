@@ -2,16 +2,16 @@
 
 import {
   CommandDialog,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
+  CommandList,
+  CommandLoading,
   CommandSeparator,
   CommandShortcut,
-  CommandLoading,
 } from "@nexus/ui";
-import { Search, Clock, TrendingUp, Sparkles } from "lucide-react";
+import { Clock, Sparkles, TrendingUp } from "lucide-react";
 import * as React from "react";
 
 import { SearchAnimeCard } from "@/components/search/search-anime-card";

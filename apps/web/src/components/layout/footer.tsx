@@ -1,5 +1,4 @@
-import { Container, Separator } from "@nexus/ui";
-import { Typography } from "@nexus/ui";
+import { Container, Separator, Typography } from "@nexus/ui";
 import Link from "next/link";
 
 /**
@@ -189,11 +188,11 @@ export function Footer() {
           </p>
 
           <p className="text-text-placeholder text-xs" aria-label="Version and build">
-            <span aria-hidden="true">v0.1.0</span>
+            <span aria-hidden="true">v0.3.0</span>
             <span aria-hidden="true" className="mx-2">
               ·
             </span>
-            <span aria-hidden="true">M3 · 2026.06.29</span>
+            <span aria-hidden="true">Application Shell · 2026.06.29</span>
           </p>
         </div>
       </Container>

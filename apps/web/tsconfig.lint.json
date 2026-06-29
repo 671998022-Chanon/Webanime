@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  // The type-checked lint rules (no-unsafe-*, no-misused-promises, ...) build a
+  // TS program from the files in `include`. The base tsconfig only covers
+  // src/**, so types that originate in workspace deps — e.g. CommandItem's
+  // props, which derive from cmdk's types inside packages/ui — are outside the
+  // program and collapse to `any`, surfacing false-positive no-unsafe-call
+  // errors against otherwise-safe code (see search-anime-card.tsx). Adding the
+  // UI source keeps the lint program honest without changing what `tsc`
+  // typechecks for the build (that still uses tsconfig.json).
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/ui/src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", ".next"]
+}

@@ -1,5 +1,4 @@
-import { Skeleton, SkeletonRect } from "@nexus/ui";
-import { Container } from "@nexus/ui";
+import { Container, Skeleton, SkeletonRect } from "@nexus/ui";
 
 /**
  * Reusable page-level loading skeleton. Matches the expected content

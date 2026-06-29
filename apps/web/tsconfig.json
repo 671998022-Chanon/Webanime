@@ -6,7 +6,15 @@
     "types": ["node"],
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      // @nexus/ui is a workspace package resolved via the pnpm symlink in
+      // node_modules. The bare specifier resolves for `tsc`, but the
+      // typescript-eslint parser (used by the type-checked lint rules) only
+      // honors tsconfig paths for non-relative resolution — without this
+      // mapping, types imported from @nexus/ui collapse to `any` and trigger
+      // no-unsafe-* failures against props derived from them.
+      "@nexus/ui": ["../../packages/ui/src/index.ts"],
+      "@nexus/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"],

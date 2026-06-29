@@ -4,13 +4,13 @@
 // design-token fonts, full SEO metadata + viewport, and an a11y skip-link.
 // Feature chrome (Header/Footer/AppShell) is composed inside <main> by AppShell.
 
-import type { Metadata, Viewport } from "next";
+import { SkipLink } from "@nexus/ui";
 import { Inter, Space_Grotesk } from "next/font/google";
 
-import { Providers } from "@/providers";
 import { AppShell } from "@/components/layout/app-shell";
+import { Providers } from "@/providers";
 
-import { SkipLink } from "@nexus/ui";
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 

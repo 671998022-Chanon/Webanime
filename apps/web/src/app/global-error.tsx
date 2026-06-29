@@ -7,7 +7,6 @@
  * minimal, self-contained error page with just the HTML + body basics.
  */
 export default function GlobalError({
-  error,
   reset,
 }: {
   error: Error & { digest?: string };
