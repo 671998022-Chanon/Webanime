@@ -6,8 +6,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileDrawer } from "@/components/layout/mobile-drawer";
 import { SearchBar } from "@/components/search/search-bar";
-import { UserMenu } from "@/components/user/user-menu";
 import { ThemeToggle } from "@/components/user/theme-toggle";
+import { UserMenu } from "@/components/user/user-menu";
 
 interface AppShellProps {
   children: React.ReactNode;

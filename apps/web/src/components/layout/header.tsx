@@ -1,12 +1,13 @@
 "use client";
 
 import { Container, IconButton, cn } from "@nexus/ui";
-import { Menu, Search, Bell } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { useScrollPosition } from "@/hooks/use-scroll-position";
 import { HEADER_NAV_ITEMS } from "@/lib/nav-items";
+import { NotificationsPanel } from "@/components/user/notifications-panel";
 
 interface HeaderProps {
   onMobileMenuToggle?: () => void;
@@ -128,16 +129,11 @@ export function Header({ onMobileMenuToggle, onSearchOpen, children }: HeaderPro
           </button>
         </div>
 
-        {/* Right zone: notifications + user slot */}
+        {/* Right zone: notifications + user slot (theme toggle, user menu via children) */}
         <div className="flex items-center gap-1">
-          <IconButton
-            variant="ghost"
-            size="sm"
-            aria-label="Notifications"
-            className="hidden md:inline-flex"
-          >
-            <Bell className="size-5" />
-          </IconButton>
+          <div className="hidden md:inline-flex">
+            <NotificationsPanel />
+          </div>
           {children}
           {/* Mobile search icon */}
           <IconButton

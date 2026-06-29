@@ -9,9 +9,12 @@ export {
   useTheme,
   THEME_COOKIE_NAME,
   THEME_STORAGE_KEY,
+  THEME_OPTIONS,
   type Theme,
   type ResolvedTheme,
   type ThemeState,
+  type ThemeOption,
+  type ThemeOptionMeta,
 } from "./theme";
 
 // Components
