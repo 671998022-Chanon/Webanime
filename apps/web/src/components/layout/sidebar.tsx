@@ -131,7 +131,7 @@ function SidebarGroup({
   pathname: string;
 }) {
   return (
-    <div>
+    <>
       {!collapsed && (
         <Typography
           element="h2"
@@ -158,7 +158,7 @@ function SidebarGroup({
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
 
@@ -186,7 +186,7 @@ function SidebarNavLink({
         collapsed ? "justify-center px-0 py-2.5" : "px-3 py-2.5",
         active
           ? "border-aether-4 bg-action-primary-bg/10 text-text-primary border-l-2"
-          : "text-text-secondary hover:bg-action-ghost-hover hover:text-text-primary",
+          : "text-text-secondary hover:bg-action-ghost-hover hover:text-text-primary border-l-2 border-transparent",
       )}
     >
       <Icon className="size-5 shrink-0" aria-hidden="true" />
